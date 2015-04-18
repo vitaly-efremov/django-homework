@@ -17,31 +17,41 @@
                 <tr>
                   <th>#</th>
                   <th>ФИО</th>
-                  <th>ТиМП</th>
-                  <th>ЭиС</th>
-                  <th>Философия</th>
-                  <th>Иностранный язык</th>
-                  <th>Физическая культура</th>
+                  {% for subject in list_subject %}
+                    <th>{{ subject.name}}</th>
+                  {% endfor %}
+
                   <th>Средний балл</th>
                 </tr>
                 </thead>
                 <tbody>
                     {% for student in students_statistics %}
                         <tr>
-                            <th scope="row">{{student.id}}</th>
+                            <th scope="row">{{ student.ids}}</th>
                             <td>{{student.fio}}</td>
-                            <td>{{student.timp}}</td>
-                            <td>{{student.eis}}</td>
-                            <td>{{student.philosophy}}</td>
-                            <td>{{student.english}}</td>
-                            <td>{{student.sport}}</td>
-                            <td>{{student.average}}</td>
+                            {% for score in student.subjects %}
+                              <td>{{score.score}}</td>
+                            {% endfor %}
+                            <td>{{student.avg}}</td>
+
                         </tr>
                     {% endfor %}
                 </tbody>
+                <tbody>
+                        <tr>
+                            <th scope="row"></th>
+                            <td></td>
+                            {% for score in summarySubject %}
+                              <td>{{score}}</td>
+                            {% endfor %}
+
+                            
+
+                        </tr>
+                </tbody>
             </table>
-            <h4>Отличники:{{excellent_students}}</h4>
-            <h4>Отчислить:{{bad_students}}</h4>
+            <h4>Отличники: {% for student in excellent_students %} {{student.fio}} {% endfor %}</h4>
+            <h4>Отчислить: {% for student in bad_students %} {{student.fio}} {% endfor %}</h4>
         </div>
 	</body>
 </html>
