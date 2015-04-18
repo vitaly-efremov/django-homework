@@ -7,17 +7,46 @@ students_list = []
 class Student:
     def __init__(self, fio, group, age):
         students_list.append({
-            'fio': self.fio,
-            'group': self.group,
-            'age': self.age,
+            'fio': fio,
+            'group': group,
+            'age': age,
+            'id': (len(students_list)+1)
+        })
+
+Student('Gurakov Ivan', 723, 19)
+Student('Mukovkin Dmitry', 723, 20)
+Student('Ivanov Evgeni', 723, 23)
+
+subject_list = []
+
+class Subject:
+    def __init__(self, name):
+        subject_list.append({
+            'subject': name,
+            'id': (len(subject_list)+1)
+        })
+
+Subject('Философия')
+Subject('Английский')
+Subject('Тер. Вер')
+Subject('Программирование')
+
+score_list = []
+
+class Score:
+    def __init__(self, id_student, id_subject, value):
+        score_list.append({
+            'id': id_student,
+            'id_subject': id_subject,
+            'value': value
         })
 
 
-Student('Gurakov Ivan', 723, 19)
-Student('Mukovkin Dmitry',)
 
-
-
+for x in score_list:
+    for y in students_list:
+        if x['id'] == y['id']:
+            y.app({x['id_subject']: x['value']})
 
 class IndexView(TemplateView):
     template_name = "index.html"
@@ -26,31 +55,9 @@ class IndexView(TemplateView):
         context = super(IndexView, self).get_context_data(**kwargs)
         context.update(
             {
-                'students_statistics': [{'age': x.id, 'fio': x.fio, 'age': x.age} for x in students_list],
-                #     {
-                #         'id': 1,
-                #         'fio': 'Someone',
-                #         'age': 18
-                #         # 'timp': 2,
-                #         # 'eis': 3,
-                #         # 'philosophy': 4,
-                #         # 'english': 5,
-                #         # 'sport': 2.3,
-                #         # 'average': 2.3,
-                #     }
-                #     ,
-                #     {
-                #         'id': 2,
-                #         'fio': 'gia',
-                #         'age': 20
-                #         # 'timp': 4,
-                #         # 'eis': 4,
-                #         # 'philosophy': 4,
-                #         # 'english': 4,
-                #         # 'sport': 5,
-                #         # 'average': 4.2,
-                #     }
-                # ],
+                'students_statistics': students_list,
+                'subject_list': subject_list,
+                'score_list': score_list,
                 'excellent_students': 'Student A, Student B',
                 'bad_students': 'Student C, Student D'
             }
@@ -58,11 +65,3 @@ class IndexView(TemplateView):
         return context
 
 
-
-
-class Subject:
-    pass
-
-class Score:
-    # Subject,
-    pass

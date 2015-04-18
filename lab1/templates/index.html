@@ -17,6 +17,7 @@
                 <tr>
                   <th>#</th>
                   <th>ФИО</th>
+                    <th>Группа</th>
                     <th>Возраст</th>  <!--
                   <th>ТиМП</th>
                   <th>ЭиС</th>
@@ -31,6 +32,7 @@
                         <tr>
                             <th scope="row">{{student.id}}</th>
                             <td>{{student.fio}}</td>
+                            <td>{{student.group}}</td>
                             <td>{{student.age}}</td> <!--
                             <td>{{student.timp}}</td>
                             <td>{{student.eis}}</td>
@@ -38,6 +40,22 @@
                             <td>{{student.english}}</td>
                             <td>{{student.sport}}</td>
                             <td>{{student.average}}</td> -->
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Предмет</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for subject in subject_list %}
+                        <tr>
+                            <th scope="row">{{subject.id}}</th>
+                            <th>{{subject.subject}}</th>
                         </tr>
                     {% endfor %}
                 </tbody>
