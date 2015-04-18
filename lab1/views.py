@@ -26,10 +26,12 @@ class Subject:
             'id': (len(subject_list)+1)
         })
 
+Subject('ТиМП')
+Subject('ЭиС')
 Subject('Философия')
-Subject('Английский')
-Subject('Тер. Вер')
-Subject('Программирование')
+Subject('Иностранный язык')
+Subject('Физическая культура')
+
 
 score_list = []
 
@@ -43,34 +45,47 @@ class Score:
 
 Score(1,1,5)
 Score(1,2,4)
-Score(1,4,3)
+Score(1,3,5)
+Score(1,4,5)
+Score(1,5,5)
 Score(2,1,4)
 Score(2,2,3)
 Score(2,3,4)
+Score(2,4,5)
+Score(2,5,3)
 Score(3,1,2)
+Score(3,2,4)
+Score(3,4,4)
 Score(3,5,4)
 Score(3,3,3)
 
-for x in score_list:
-    for y in students_list:
+# print score_list[0]['id']
+sum = 0
+for x in students_list:
+    for y in score_list:
         if x['id'] == y['id']:
-            mnoj = {str(x['id_subject']): x['value']}
-            print mnoj
-            y.union(mnoj)
+            mnoj = {str(y['id_subject']): y['value']}
+            x.update(mnoj)
+            sum += y['value']
+    mnoj = {'average': float(sum)/len(subject_list)}
+    print mnoj
+    x.update(mnoj)
+    sum=0
 
-print students_list[1]
+exelent_students = [{'fio': x['fio']} for x in students_list if x['average']>4.5]
 
 class IndexView(TemplateView):
     template_name = "index.html"
 
     def get_context_data(self, **kwargs):
+
         context = super(IndexView, self).get_context_data(**kwargs)
         context.update(
             {
                 'students_statistics': students_list,
                 'subject_list': subject_list,
                 'score_list': score_list,
-                'excellent_students': 'Student A, Student B',
+                'exelent_students': exelent_students,
                 'bad_students': 'Student C, Student D'
             }
         )

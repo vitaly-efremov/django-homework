@@ -24,11 +24,11 @@
                   <th>Философия</th>
                   <th>Иностранный язык</th>
                   <th>Физическая культура</th>
-                <!--  <th>Средний балл</th> -->
+                  <th>Средний балл</th>
                 </tr>
                 </thead>
                 <tbody>
-                    {% for student in students_statistics %} {% for score in score_list %}
+                    {% for student in students_statistics %}
                         <tr>
                             <th scope="row">{{student.id}}</th>
                             <td>{{student.fio}}</td>
@@ -39,7 +39,7 @@
                             <td>{{student.3}}</td>
                             <td>{{student.4}}</td>
                             <td>{{student.5}}</td>
-                        <!--    <td>{{student.average}}</td> -->
+                            <td>{{student.average}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -49,6 +49,7 @@
                 <tr>
                   <th>#</th>
                   <th>Предмет</th>
+                    <th>Средний Бал</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -56,11 +57,28 @@
                         <tr>
                             <th scope="row">{{subject.id}}</th>
                             <th>{{subject.subject}}</th>
+                            <th>{{subject.average}}</th>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <h4>Отличники:{{excellent_students}}</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Отличники</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for students in exelent_students %}
+                <tr>
+                    <th>
+                        <h4>Отличники:{{students.fio}}</h4>
+                    </th>
+                </tr>
+
+
+                </tbody>
+
             <h4>Отчислить:{{bad_students}}</h4>
         </div>
 	</body>
