@@ -41,12 +41,24 @@ class Score:
             'value': value
         })
 
-
+Score(1,1,5)
+Score(1,2,4)
+Score(1,4,3)
+Score(2,1,4)
+Score(2,2,3)
+Score(2,3,4)
+Score(3,1,2)
+Score(3,5,4)
+Score(3,3,3)
 
 for x in score_list:
     for y in students_list:
         if x['id'] == y['id']:
-            y.app({x['id_subject']: x['value']})
+            mnoj = {str(x['id_subject']): x['value']}
+            print mnoj
+            y.union(mnoj)
+
+print students_list[1]
 
 class IndexView(TemplateView):
     template_name = "index.html"

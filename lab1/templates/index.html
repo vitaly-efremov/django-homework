@@ -18,28 +18,28 @@
                   <th>#</th>
                   <th>ФИО</th>
                     <th>Группа</th>
-                    <th>Возраст</th>  <!--
+                    <th>Возраст</th>
                   <th>ТиМП</th>
                   <th>ЭиС</th>
                   <th>Философия</th>
                   <th>Иностранный язык</th>
                   <th>Физическая культура</th>
-                  <th>Средний балл</th> -->
+                <!--  <th>Средний балл</th> -->
                 </tr>
                 </thead>
                 <tbody>
-                    {% for student in students_statistics %}
+                    {% for student in students_statistics %} {% for score in score_list %}
                         <tr>
                             <th scope="row">{{student.id}}</th>
                             <td>{{student.fio}}</td>
                             <td>{{student.group}}</td>
-                            <td>{{student.age}}</td> <!--
-                            <td>{{student.timp}}</td>
-                            <td>{{student.eis}}</td>
-                            <td>{{student.philosophy}}</td>
-                            <td>{{student.english}}</td>
-                            <td>{{student.sport}}</td>
-                            <td>{{student.average}}</td> -->
+                            <td>{{student.age}}</td>
+                            <td>{{student.1}}</td>
+                            <td>{{student.2}}</td>
+                            <td>{{student.3}}</td>
+                            <td>{{student.4}}</td>
+                            <td>{{student.5}}</td>
+                        <!--    <td>{{student.average}}</td> -->
                         </tr>
                     {% endfor %}
                 </tbody>
