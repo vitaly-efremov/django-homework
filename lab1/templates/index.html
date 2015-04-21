@@ -19,11 +19,15 @@
                   <th>ФИО</th>
                     <th>Группа</th>
                     <th>Возраст</th>
+                    {% for subject in subject_list %}
+                    <th> {{subject.name}} </th>
+                    {% endfor %}
+                    <!--
                   <th>ТиМП</th>
                   <th>ЭиС</th>
                   <th>Философия</th>
                   <th>Иностранный язык</th>
-                  <th>Физическая культура</th>
+                  <th>Физическая культура</th> -->
                   <th>Средний балл</th>
                 </tr>
                 </thead>
@@ -31,7 +35,7 @@
                     {% for student in students_statistics %}
                         <tr>
                             <th scope="row">{{student.id}}</th>
-                            <td>{{student.fio}}</td>
+                            <th>{{student.fio}}</th>
                             <td>{{student.group}}</td>
                             <td>{{student.age}}</td>
                             <td>{{student.1}}</td>
@@ -39,6 +43,7 @@
                             <td>{{student.3}}</td>
                             <td>{{student.4}}</td>
                             <td>{{student.5}}</td>
+                            <td>{{student.6}}</td>
                             <td>{{student.average}}</td>
                         </tr>
                     {% endfor %}
@@ -49,14 +54,14 @@
                 <tr>
                   <th>#</th>
                   <th>Предмет</th>
-                    <th>Средний Бал</th>
+                    <th>Средний балл</th>
                 </tr>
                 </thead>
                 <tbody>
                     {% for subject in subject_list %}
                         <tr>
                             <th scope="row">{{subject.id}}</th>
-                            <th>{{subject.subject}}</th>
+                            <th>{{subject.name}}</th>
                             <th>{{subject.average}}</th>
                         </tr>
                     {% endfor %}
@@ -64,22 +69,35 @@
             </table>
             <table>
                 <thead>
-                <tr>
-                    <th>Отличники</th>
-                </tr>
+                <th>
+                <h4>Отличники: </h4>
+                </th>
                 </thead>
                 <tbody>
-                {% for students in exelent_students %}
                 <tr>
-                    <th>
-                        <h4>Отличники:{{students.fio}}</h4>
-                    </th>
+                {% for student in exelent_students %}
+
+                        <th scope="row"></th>
+                        <th><h4>   {{student.fio}},&nbsp;</h4></th>
+
+                {% endfor %}
                 </tr>
-
-
                 </tbody>
-
-            <h4>Отчислить:{{bad_students}}</h4>
+            </table>
+            <table>
+                <thead>
+                <th>
+                    <h4>Отчислить:</h4>
+                    </th>
+                </thead>
+                <tbody><tr>
+            {% for student in bad_students %}
+                <th scope="row"></th>
+                <th><h4>{{student.fio}},&nbsp;</h4></th>
+            {% endfor %}
+                </tr>
+                </tbody>
+                </table>
         </div>
 	</body>
 </html>
