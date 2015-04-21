@@ -67,37 +67,10 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <table>
-                <thead>
-                <th>
-                <h4>Отличники: </h4>
-                </th>
-                </thead>
-                <tbody>
-                <tr>
-                {% for student in exelent_students %}
 
-                        <th scope="row"></th>
-                        <th><h4>   {{student.fio}},&nbsp;</h4></th>
+            <h4>Отличники: {%for student in exelent_students %} {{student.fio}}, &nbsp; {% endfor %}</h4>
 
-                {% endfor %}
-                </tr>
-                </tbody>
-            </table>
-            <table>
-                <thead>
-                <th>
-                    <h4>Отчислить:</h4>
-                    </th>
-                </thead>
-                <tbody><tr>
-            {% for student in bad_students %}
-                <th scope="row"></th>
-                <th><h4>{{student.fio}},&nbsp;</h4></th>
-            {% endfor %}
-                </tr>
-                </tbody>
-                </table>
+            <h4>Отчислить: {% for student in bad_students %} {{student.fio}}, &nbsp; {% endfor %}</h4>
         </div>
 	</body>
 </html>
