@@ -18,7 +18,7 @@ class IndexView(TemplateView):
                         'philosophy': 4,
                         'english': 5,
                         'sport': 2.3,
-                        'average': 2.3,
+                        'average': 2.7,
                     }
                 ],
                 'excellent_students': 'Student A, Student B',
@@ -30,7 +30,6 @@ class IndexView(TemplateView):
 
 class Student:
     pass
-
 
 class Statistics:
     # student_id, [Subjects]
