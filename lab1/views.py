@@ -12,16 +12,16 @@ class IndexView(TemplateView):
                 'students_statistics': [
                     {
                         'id': 1,
-                        'fio': 'Someone',
-                        'timp': 2,
-                        'eis': 3,
-                        'philosophy': 4,
+                        'fio': 'Кайзер Екатерина Александровна',
+                        'timp': 5,
+                        'eis': 5,
+                        'philosophy': 5,
                         'english': 5,
-                        'sport': 2.3,
-                        'average': 2.3,
+                        'sport': 5,
+                        'average': 5,
                     }
                 ],
-                'excellent_students': 'Student A, Student B',
+                'excellent_students': 'Иванов, Student B',
                 'bad_students': 'Student C, Student D'
             }
         )
