@@ -28,8 +28,32 @@ class IndexView(TemplateView):
         return context
 
 
-class Student:
-    pass
+class Person:
+    fio = "Name Surname"
+    def set_fio(self,f):
+        self.fio = f
+    def person(self):
+        return self.fio
+
+class Student(Person):
+    id = "no id"
+    person = "n/a"
+    group = "n/a"
+    age = "n/a"
+
+    def set_person(self):
+        self.person = Person.person(self)
+    def set_id(self, id):
+        self.id = id
+    def set_group(self, g):
+        self.group = g
+    def set_age(self, a):
+        self.age = a
+    def student_desc(self):
+        print("My ID: ", self.id)
+        print("My name: ", self.person)
+        print("My group: ", self.group)
+        print("My age: ", self.age)
 
 class Statistics:
     # student_id, [Subjects]
@@ -41,3 +65,10 @@ class Subject:
 class Score:
     # Subject,
     pass
+
+person1 = Student()
+person1.set_fio("John Ivanov")
+person1.set_person()
+person1.set_id(1)
+person1.set_age(20)
+person1.set_group(743)
