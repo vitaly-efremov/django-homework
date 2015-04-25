@@ -121,6 +121,15 @@ Score(10, 4, 4)
 Score(10, 5, 4)
 Score(10, 6, 4)
 
+Student('dfksdlkfj',743,13)
+Score(11,1,4)
+Score(11,2,4)
+Score(11,3,4)
+Score(11,4,4)
+Score(11,5,4)
+Score(11,6,4)
+
+
 sum = 0
 for x in students_list:
     for y in score_list:
