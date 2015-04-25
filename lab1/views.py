@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.views.generic.base import TemplateView
-
+students_list = []
 
 class IndexView(TemplateView):
     template_name = "index.html"
@@ -29,7 +29,10 @@ class IndexView(TemplateView):
 
 
 class Student:
-    pass
+    def __init__(self, fio, group, age):
+        students_list.append({
+        fio
+        })
 
 
 class Statistics:
