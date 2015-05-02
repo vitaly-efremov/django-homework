@@ -4,18 +4,24 @@ from django.views.generic.base import TemplateView
 
 students_list = []
 
-class Student:
-    def __init__(self, fio, group, age):
+class Person(object):
+    def __init__(self, fio):
         students_list.append({
-            'fio': fio,
+            'fio': fio
+        })
+
+class Student(Person):
+    def __init__(self, fio, group, age):
+        super(Student,self).__init__(fio)
+        students_list[len(students_list)-1].update({
             'group': group,
             'age': age,
-            'id': (len(students_list)+1)
+            'id': (len(students_list))
         })
 
 subject_list = []
 
-class Subject:
+class Subject(object):
     def __init__(self, name):
         subject_list.append({
             'name': name,
@@ -26,7 +32,7 @@ class Subject:
 
 score_list = []
 
-class Score:
+class Score(object):
     def __init__(self, id_student, id_subject, value):
         score_list.append({
             'id': id_student,
