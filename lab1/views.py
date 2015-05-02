@@ -1,53 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.views.generic.base import TemplateView
 
-
-class IndexView(TemplateView):
-    template_name = "index.html"
-
-    def get_context_data(self, **kwargs):
-        studentList = StudentList()
-        
-
-        studentList.add(Student('Mukovkin Dmitry', 723, 19))
-        studentList.add(Student('Ivan Gurakov', 723, 19))
-        studentList.add(Student('Petya Petrov', 723, 24))
-        
-        subjectList = []
-
-        subjectList.append(Subject('English'))
-        subjectList.append(Subject('TiMP'))
-        subjectList.append(Subject('Mathematic'))
-
-        scoreList = ScoreList()
-
-        scoreList.add(Score(studentList.list[0].ids, 1, 5))
-        scoreList.add(Score(studentList.list[0].ids, 2, 5))
-        scoreList.add(Score(studentList.list[0].ids, 3, 5))
-        
-        scoreList.add(Score(studentList.list[1].ids, 2, 5))
-        scoreList.add(Score(studentList.list[1].ids, 1, 4))
-        scoreList.add(Score(studentList.list[1].ids, 3, 5))
-
-        scoreList.add(Score(studentList.list[2].ids, 2, 3))
-        scoreList.add(Score(studentList.list[2].ids, 1, 3))
-        scoreList.add(Score(studentList.list[2].ids, 3, 2))
-
-        statistic = Statistics(studentList.all(), subjectList, scoreList.all())
-
-
-        context = super(IndexView, self).get_context_data(**kwargs)
-        context.update(
-            {
-                'students_statistics': statistic.listStudent(),
-                'list_subject': statistic.listSubject(),
-                'excellent_students': statistic.getExcellentStudent(),
-                'bad_students': statistic.getBadStudent(),
-                'summarySubject': statistic.getResultSummary()
-            }
-        )
-        return context
-
 class Statistics:
     def __init__(self, student_list, subject_list, score_list):
         self.st_list = student_list
@@ -77,6 +30,7 @@ class Statistics:
         return filter(lambda e: (1.0 * self.getAverage(self.subjectGetByStudent(e.ids)) / len(e.subjects)) < 3.0, self.st_list)
 
     def getResultSummary(self):
+        print map(lambda e: (1.0 * e._id) , self.su_list)
         return map(lambda e: (1.0 * sum(self.getBySubject(e._id)) / len(self.getBySubject(e._id))) , self.su_list)
 
     def getBySubject(self, _id):
@@ -98,16 +52,7 @@ class Student(Person):
         Student.inc += 1
 
 class StudentList:
-    def __init__(self):
-        self.list = []
-
-    def add(self, student):
-        self.list.append(student)
-        
-        return self.list
-
-    def all(self):
-        return self.list
+    pass
 
 # class Statistics:
 #     def 
@@ -134,12 +79,50 @@ class Score(object):
         
         Score.inc += 1
 
-class ScoreList(object):
-    def __init__(self):
-        self.list = []
-
-    def add(self, score):
-        self.list.append(score)
+student_list = []
         
-    def all(self):
-        return self.list
+
+student_list.append(Student('Mukovkin Dmitry', 723, 19))
+student_list.append(Student('Ivan Gurakov', 723, 19))
+student_list.append(Student('Petya Petrov', 723, 24))
+
+subject_list = []
+
+subject_list.append(Subject('English'))
+subject_list.append(Subject('TiMP'))
+subject_list.append(Subject('Mathematic'))
+
+score_list = []
+
+score_list.append(Score(student_list[0].ids, 1, 5))
+score_list.append(Score(student_list[0].ids, 2, 5))
+score_list.append(Score(student_list[0].ids, 3, 5))
+
+score_list.append(Score(student_list[1].ids, 2, 5))
+score_list.append(Score(student_list[1].ids, 1, 4))
+score_list.append(Score(student_list[1].ids, 3, 5))
+    
+score_list.append(Score(student_list[2].ids, 2, 3))
+score_list.append(Score(student_list[2].ids, 1, 3))
+score_list.append(Score(student_list[2].ids, 3, 2))
+
+statistic = Statistics(student_list, subject_list, score_list)
+
+
+class IndexView(TemplateView):
+    template_name = "index.html"
+
+    def get_context_data(self, **kwargs):
+        
+
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context.update(
+            {
+                'students_statistics': statistic.listStudent(),
+                'list_subject': statistic.listSubject(),
+                'excellent_students': statistic.getExcellentStudent(),
+                'bad_students': statistic.getBadStudent(),
+                'summarySubject': statistic.getResultSummary()
+            }
+        )
+        return context
