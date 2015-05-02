@@ -5,37 +5,7 @@ from django.views.generic.base import TemplateView
 # Раздел описания классов
 
 
-class Student:
-    # id, person, group, age
-    def __init__(self, student_id, person, group, age):
-        # Конструктор класса Student
-        self.student_id = student_id
-        self.person = person
-        self.group = group
-        self.age = age
-    pass
-
-
-class Subject:
-    # subject_id, name
-    def __init__(self, subject_id, name):
-        # Конструктор класса Subject
-        self.subject_id = subject_id
-        self.name = name
-    pass
-
-
-class Score:
-    # student_id, subject_id, value
-    def __init__(self, student_id, subject_id, value):
-        # Конструктор класса Score
-        self.student_id = student_id
-        self.subject_id = subject_id
-        self.value = value
-    pass
-
-
-class Person:
+class Person(object):
     def __init__(self, name, surname, patronymic):
         # Конструктор класса Person
         self.name = name
@@ -46,7 +16,33 @@ class Person:
 
     def get_fio(self):
         return self.surname + self.name + self.patronymic
-    pass
+
+
+class Student(object):
+    # id, person, group, age
+    def __init__(self, student_id, person, group, age):
+        # Конструктор класса Student
+        self.student_id = student_id
+        self.person = person
+        self.group = group
+        self.age = age
+
+
+class Subject(object):
+    # subject_id, name
+    def __init__(self, subject_id, name):
+        # Конструктор класса Subject
+        self.subject_id = subject_id
+        self.name = name
+
+
+class Score(object):
+    # student_id, subject_id, value
+    def __init__(self, student_id, subject_id, value):
+        # Конструктор класса Score
+        self.student_id = student_id
+        self.subject_id = subject_id
+        self.value = value
 
 
 # Функция average_subject_value
@@ -56,7 +52,7 @@ def average_subject_value(subject_id):
     # Переменная average - суммарный балл по дисциплине
     average = 0.0
     for student_id in range(len(students_statistics)):
-        #average = students_statistics[<индекс студента>][ключ]
+        # average = students_statistics[<индекс студента>][ключ]
         average += students_statistics[student_id][subjects_example[subject_id]]
     return average/len(subjects_example)
 
@@ -74,12 +70,12 @@ subjects_example = ['timp', 'eis', 'philosophy', 'english', 'sport']
 # subjects - список, содержащий id предметов и их наименования
 subjects = []
 for subject_id in range(len(subjects_example)):
-    subjects.append(Subject(subject_id, subjects_example[i]))
+    subjects.append(Subject(subject_id, subjects_example[subject_id]))
 # Задание списка с полной информацией о студентах
 # students_other_information - список, содержащий id студентов, их ФИО, группы и возраст
 students_other_information = []
 for student_id in range(len(names)):
-    students_other_information.append(Student(student_id, students_fio[i], 743, 19))
+    students_other_information.append(Student(student_id, students_fio[student_id], 743, 19))
 # Задание списка успеваемости студентов
 # scores - список, содержащий все баллы студентов
 scores = []
@@ -135,21 +131,16 @@ students_statistics.append(student_info)
 # Зададим строки из отличников и отчисляемых
 # bad_students - строка, содержащая имена студентов на отчисление
 # excellent_students - строка, содержащая имена студентов - отличников
-bad_students = ''
-excellent_students = ''
+bad_students_list = []
+excellent_students_list = []
 for student_id in range(len(names)):
     if average_scores[student_id] > 4.5:
-        # Если строка не пустая, то добавляем запятую впереди ФИО
-        # Иначе запятую в начало строки не ставим, а добавляем только ФИО
-        if len(excellent_students) > 0:
-            excellent_students += ' ,' + students_fio[student_id].get_fio()
-        else:
-            excellent_students += students_fio[student_id].get_fio()
+        excellent_students_list.append(students_fio[student_id].get_fio())
     elif average_scores[student_id] < 3:
-        if len(bad_students) > 0:
-            bad_students += ', ' + students_fio[student_id].get_fio()
-        else:
-            bad_students = students_fio[student_id].get_fio()
+        bad_students_list.append(students_fio[student_id].get_fio())
+# Для более красивого вида, вставим между элементами списка запятые и объединим это в строку
+bad_students = ', '.join(bad_students_list)
+excellent_students = ', '.join(excellent_students_list)
 
 
 class IndexView(TemplateView):
