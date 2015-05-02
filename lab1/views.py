@@ -11,13 +11,16 @@ class Person(object):
         })
 
 class Student(Person):
+    id_student = 1
     def __init__(self, fio, group, age):
         super(Student,self).__init__(fio)
+        self.id_student = Student.id_student
         students_list[len(students_list)-1].update({
             'group': group,
             'age': age,
-            'id': (len(students_list))
+            'id': Student.id_student
         })
+        Student.id_student += 1
 
 subject_list = []
 
