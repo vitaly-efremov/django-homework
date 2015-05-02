@@ -9,12 +9,12 @@ class Statistics:
 
     def listStudent(self):
         for e in self.st_list:
-            e.subjects = self.subjectGetByStudent(e.ids)
+            e.subjects = self.getSubjectByStudent(e.ids)
             e.avg = 1.0* self.getAverage(e.subjects) / len(e.subjects)
 
         return self.st_list
 
-    def subjectGetByStudent(self, student):
+    def getSubjectByStudent(self, student):
         return sorted(filter(lambda e: (e.student == student), self.sc_list), key = lambda score: score.subject)
 
     def getAverage(self, subjects):
@@ -24,10 +24,10 @@ class Statistics:
         return self.su_list
 
     def getExcellentStudent(self):
-        return filter(lambda e: (1.0* self.getAverage(self.subjectGetByStudent(e.ids)) / len(e.subjects)) > 4.5, self.st_list)
+        return filter(lambda e: (1.0* self.getAverage(self.getSubjectByStudent(e.ids)) / len(e.subjects)) > 4.5, self.st_list)
 
     def getBadStudent(self):
-        return filter(lambda e: (1.0 * self.getAverage(self.subjectGetByStudent(e.ids)) / len(e.subjects)) < 3.0, self.st_list)
+        return filter(lambda e: (1.0 * self.getAverage(self.getSubjectByStudent(e.ids)) / len(e.subjects)) < 3.0, self.st_list)
 
     def getResultSummary(self):
         print map(lambda e: (1.0 * e._id) , self.su_list)
@@ -36,17 +36,19 @@ class Statistics:
     def getBySubject(self, _id):
         return map(lambda x: x.score, filter(lambda e: (e.subject == _id), self.sc_list))
 
-class Person:
-    pass
+class Person(object):
+    def __init__(self, fio, age):
+        self.fio = fio
+        self.age = age
 
 class Student(Person):
     inc = 1
 
-    def __init__(self, person, group, age):
+    def __init__(self, fio, group, age):
+        super(Student, self).__init__(fio, age)
+
         self.ids = Student.inc
-        self.fio = person
         self.group  = group
-        self.age = age
         self.subjects = []
 
         Student.inc += 1
@@ -113,8 +115,6 @@ class IndexView(TemplateView):
     template_name = "index.html"
 
     def get_context_data(self, **kwargs):
-        
-
         context = super(IndexView, self).get_context_data(**kwargs)
         context.update(
             {
