@@ -2,7 +2,6 @@
 from django.views.generic.base import TemplateView
 from random import randint
 
-st = 'student'
 class IndexView(TemplateView):
     template_name = "index.html"
 
@@ -13,14 +12,14 @@ class IndexView(TemplateView):
                 'students_statistics': stat.generate_dict_list(),
                 'subjects': [x.name for x in sbj_list],
                 'average_subj': [stat.avg_subj(x) for x in stat.all_subj_id()],
-                'excellent_students': ', '.join(stat.good_stud()),
-                'bad_students': ', '.join(stat.bad_stud())
+                'excellent_students': ', '.join(stat.good_stud()) or 'нет отличников',
+                'bad_students': ', '.join(stat.bad_stud()) or 'нет студентов на отчисление'
             }
         )
         return context
 
 
-class Person:
+class Person(object):
     def __init__(self, fam, name, patr):
         self.fam = unicode(fam, 'UTF-8')  # фамилия
         self.name = unicode(name, 'UTF-8')  # имя
@@ -35,12 +34,13 @@ class Person:
         return ' '.join([self.fam, self.name, self.patr])
 
 
-class Student():
-    def __init__(self, ID, person, group, age):
+class Student(Person):
+    def __init__(self, ID, fam, name, patr, group, age):
+        super(Student, self).__init__(fam, name, patr)
         self.ID = ID
-        self.person = person
         self.group = group
         self.age = age
+
 
 class Statistics:
     # student_id, [Subjects]
@@ -48,7 +48,7 @@ class Statistics:
         self.scores = scores
 
     def name_of(self, student_id, short=False):
-        f = lambda s: z.person.short_name if s else z.person.full_name
+        f = lambda s: z.short_name if s else z.full_name
         return [f(short) for z in stud_list if z.ID == student_id].pop()
 
     def marks_of(self, student_id):
@@ -78,7 +78,7 @@ class Statistics:
 
     # список успевающих студентов
     def good_stud(self):
-        return [self.name_of(z) for z in self.all_id() if self.avg_stud(z) >= 4.5]
+        return [self.name_of(z) for z in self.all_id() if self.avg_stud(z) >= 4.7]
 
     # генерация списка словарей для генерации html-страницы
     def generate_dict_list(self):
@@ -107,27 +107,29 @@ class Score:
         self.subj_id = subj_id
         self.value = value
 
+
+
 p_list = [
-    Person('Манов', 'Виталий', 'Витальевич'),
-    Person('Ябловский', 'Тарас', 'Вадимович'),
-    Person('Толбанов', 'Ефим', 'Платонович'),
-    Person('Овечкина', 'Всеслава', 'Владленовна'),
-    Person('Питосина', 'Алина', 'Потаповна'),
-    Person('Мерзляков', 'Егор', 'Давыдович'),
-    Person('Халтурин', 'Сергей', 'Самуилович'),
-    Person('Спирьянова', 'Варвара', 'Мефодиевна'),
-    Person('Мирова', 'Кристина', 'Германовна'),
-    Person('Забродин', 'Якуб', 'Родионович'),
-    Person('Куксилина', 'Арина', 'Емельяновна'),
-    Person('Ягешев', 'Иван', 'Олегович'),
-    Person('Цедлица', 'Елена', 'Ираклиевна'),
-    Person('Иванков', 'Семен', 'Арсениевич'),
-    Person('Чемоданова', 'Алиса', 'Несторовна'),
-    Person('Боньча', 'Артём', 'Михеевич')
+    ('Манов', 'Виталий', 'Витальевич'),
+    ('Ябловский', 'Тарас', 'Вадимович'),
+    ('Толбанов', 'Ефим', 'Платонович'),
+    ('Овечкина', 'Всеслава', 'Владленовна'),
+    ('Питосина', 'Алина', 'Потаповна'),
+    ('Мерзляков', 'Егор', 'Давыдович'),
+    ('Халтурин', 'Сергей', 'Самуилович'),
+    ('Спирьянова', 'Варвара', 'Мефодиевна'),
+    ('Мирова', 'Кристина', 'Германовна'),
+    ('Забродин', 'Якуб', 'Родионович'),
+    ('Куксилина', 'Арина', 'Емельяновна'),
+    ('Ягешев', 'Иван', 'Олегович'),
+    ('Цедлица', 'Елена', 'Ираклиевна'),
+    ('Иванков', 'Семен', 'Арсениевич'),
+    ('Чемоданова', 'Алиса', 'Несторовна'),
+    ('Боньча', 'Артём', 'Михеевич')
     ]
 stud_list = []
 for i in range(len(p_list)):
-    stud_list.append(Student(i, p_list[i], '723', randint(19,23)))
+    stud_list.append(Student(i, p_list[i][0], p_list[i][1], p_list[i][2], '723', randint(19,23)))
 sbj_list = [
     Subject(0, 'ТиМП'),
     Subject(1, 'ЭиС'),
