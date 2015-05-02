@@ -2,17 +2,22 @@ import random
 # -*- coding: utf-8 -*-
 from django.views.generic.base import TemplateView
 
-class Student:
-    def __init__(self, student_id, person, group, age):
-        self.student_id = student_id
-        self.person = person
+class Person(object):
+    def __init__(self, fio):
+        self.fio = fio
+    pass
+
+class Student(Person):
+    def __init__(self, id, fio, group, age):
+        super(Student,self).__init__(fio)
+        self.id = id
         self.group = group
         self.age = age
     pass
 
 class Subject:
-    def __init__(self, subject_id, name):
-        self.subject_id = subject_id
+    def __init__(self, id, name):
+        self.id = id
         self.name = name
     pass
 
@@ -23,6 +28,7 @@ class Score:
         self.subject_id = subject_id
         self.value = value
     pass
+
 
 students = []
 students.append(Student(0, 'Бугоркова Алиса', 724, 19))
@@ -69,20 +75,20 @@ bad_students = ''
 for i in range(len(students)):
     if average[i] > 4.5:
         if len(excellent_students) > 0:
-            excellent_students += ', ' + students[i].person
+            excellent_students += ', ' + students[i].fio
         else:
-            excellent_students = ' ' + students[i].person
+            excellent_students = ' ' + students[i].fio
     elif average[i] < 3:
         if len(bad_students) > 0:
-            bad_students += ', ' + students[i].person
+            bad_students += ', ' + students[i].fio
         else:
-            bad_students = ' ' + students[i].person
+            bad_students = ' ' + students[i].fio
 
 students_statistics = []
 for i in range(len(students)):
     student_info = {
         'id': i+1,
-        'fio': students[i].person,
+        'fio': students[i].fio,
         'timp': scores[i*len(subjects)].value,
         'eis': scores[i*len(subjects) + 1].value,
         'philosophy': scores[i*len(subjects)+2].value,
