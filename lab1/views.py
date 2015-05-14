@@ -22,7 +22,7 @@ class IndexView(TemplateView):
                     },
                     {
                         'id': 1,
-                        'fio': 'kfkfjiuhuhiijijijijiijkfkfk',
+                        'fio': '00000000000000000000',
                         'timp': 2,
                         'eis': 3,
                         'philosophy': 4,
