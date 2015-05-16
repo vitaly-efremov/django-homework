@@ -20,7 +20,7 @@ class IndexView(TemplateView):
                         'sport': s.fiz.value,
                         'average': s.average,
                     }
-                    for s in [stat1, stat2, stat3, stat4, stat5, stat6, stat7]
+                    for s in [stat1, stat2, stat3, stat4, stat5, stat6, stat7, stat8]
                 ],
                 'excellent_students': excellent_students,
                 'bad_students': bad_students
@@ -116,6 +116,23 @@ stat7.score(5, 3, 2, 5, 5)
 for s in [stat1, stat2, stat3, stat4, stat5, stat6, stat7]:
     s.average()
 excellent = [s.student.fio for s in [stat1, stat2, stat3, stat4, stat5, stat6, stat7] if s.average >= 4.5]
-bad = [s.student.fio for s in [stat1, stat2, stat3, stat4, stat5, stat6, stat7] if s.average <= 2.5]
+bad = [s.student.fio for s in [stat1, stat2, stat3, stat4, stat5, stat6, stat7] if s.average <= 3]
 excellent_students = ', '.join(excellent)
 bad_students = ', '.join(bad)
+
+timpb = 0
+eisb = 0
+filb = 0
+inzb = 0
+fizb = 0
+for s in [stat1, stat2, stat3, stat4, stat5, stat6, stat7]:
+    timpb += round(float(s.timp.value)/7,1)
+    eisb += round(float(s.eis.value)/7,1)
+    filb += round(float(s.fil.value)/7,1)
+    inzb += round(float(s.inz.value)/7,1)
+    fizb += round(float(s.fiz.value)/7,1)
+stat8 = Statistics()
+stat8.student = Student(' ', 743, 19)
+stat8.student.fio = 'Средний балл'
+stat8.score(timpb, eisb, filb, inzb, fizb)
+stat8.average = ''
