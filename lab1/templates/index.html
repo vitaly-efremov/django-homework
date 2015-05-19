@@ -11,12 +11,14 @@
         <div class="container">
             <h1 style="text-align:center;">Лабораторная работа №1</h1>
 
-            <h2>Успеваемость студентов гр. 723</h2>
+            <h2>Успеваемость студентов гр. 743</h2>
             <table class="table table-striped">
                 <thead>
                 <tr>
                   <th>#</th>
                   <th>ФИО</th>
+                  <th>Группа</th>
+                  <th>Возраст</th>
                   <th>ТиМП</th>
                   <th>Базы данных</th>
                   <th>Философия</th>
@@ -30,6 +32,8 @@
                         <tr>
                             <th scope="row">{{student.id}}</th>
                             <td>{{student.fio}}</td>
+                            <td>{{student.group}}</td>
+                            <td>{{student.age}}</td>
                             <td>{{student.timp}}</td>
                             <td>{{student.bsbd}}</td>
                             <td>{{student.philosophy}}</td>
@@ -40,6 +44,28 @@
                     {% endfor %}
                 </tbody>
             </table>
+
+
+            <table class="table table table-striped">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Предмет</th>
+                  <th>Средний балл</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for subject in subject_stat %}
+                        <tr>
+                            <td>{{subject.id}}</td>
+                            <td>{{subject.name}}</td>
+                            <td>{{subject.average}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+
             <h4>Отличники:{{excellent_students}}</h4>
             <h4>Отчислить:{{bad_students}}</h4>
         </div>
