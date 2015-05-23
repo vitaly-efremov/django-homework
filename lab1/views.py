@@ -21,7 +21,7 @@ class IndexView(TemplateView):
                         'average': 2.3,
                     }
                 ],
-                'excellent_students': 'Student A, Student B',
+                'excellent_students': 'lalalal',
                 'bad_students': 'Student C, Student D'
             }
         )
