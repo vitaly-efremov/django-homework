@@ -11,14 +11,17 @@
         <div class="container">
             <h1 style="text-align:center;">Лабораторная работа №1</h1>
 
-            <h2>Успеваемость студентов гр. 723</h2>
+            <h2>Успеваемость студентов гр. 743</h2>
             <table class="table table-striped">
                 <thead>
                 <tr>
                   <th>#</th>
                   <th>ФИО</th>
+                  <th>группа</th>
+                  <th>возраст</th>
                   <th>ТиМП</th>
-                  <th>ЭиС</th>
+                  <th>ТИ</th>
+                  <th>финансы</th>
                   <th>Философия</th>
                   <th>Иностранный язык</th>
                   <th>Физическая культура</th>
@@ -30,18 +33,22 @@
                         <tr>
                             <th scope="row">{{student.id}}</th>
                             <td>{{student.fio}}</td>
-                            <td>{{student.timp}}</td>
-                            <td>{{student.eis}}</td>
-                            <td>{{student.philosophy}}</td>
-                            <td>{{student.english}}</td>
-                            <td>{{student.sport}}</td>
-                            <td>{{student.average}}</td>
+                            <td>{{student.group}}</td>
+                            <td>{{student.age}}</td>
+                            <td>{{student.s1}}</td>
+                            <td>{{student.s2}}</td>
+                            <td>{{student.s3}}</td>
+                            <td>{{student.s4}}</td>
+                            <td>{{student.s5}}</td>
+                            <td>{{student.s6}}</td>
+                            <td>{{student.med}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <h4>Отличники:{{excellent_students}}</h4>
-            <h4>Отчислить:{{bad_students}}</h4>
+           <h4>Отличники: {% for student in exellent_students %} {{student.fio}}, &nbsp; {% endfor %}</h4>
+           <h4>Отчислить: {% for student in bad_students %} {{student.fio}}, &nbsp; {% endfor %}</h4>
+
         </div>
 	</body>
 </html>
