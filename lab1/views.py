@@ -3,15 +3,13 @@ from django.views.generic.base import TemplateView
 students_list = []
 
 
-
-
-
 class Student(object):
     id_student = 1
+
     def __init__(self, fio, group, age):
         self.id_student = Student.id_student
         students_list.append({
-            'fio':fio,
+            'fio': fio,
             'group': group,
             'age': age,
             'id': Student.id_student
@@ -20,17 +18,20 @@ class Student(object):
 
 
 mark_list = []
+
+
 class Mark(object):
     id_mark = 1
+
     def __init__(self, s1, s2, s3, s4, s5, s6):
         self.id_mark = Mark.id_mark
         mark_list.append({
-            's1':s1,
-            's2':s2,
-            's3':s3,
-            's4':s4,
-            's5':s5,
-            's6':s6,
+            's1': s1,
+            's2': s2,
+            's3': s3,
+            's4': s4,
+            's5': s5,
+            's6': s6,
             'id':Mark.id_mark
         })
         Mark.id_mark +=1
@@ -65,9 +66,11 @@ class Statistics:
 memo = 0
 for x in range(len(students_list)):
     mem=0
-    students_list[x].update({'s1':mark_list[x]['s1'], 's2':mark_list[x]['s2'], 's3':mark_list[x]['s3'], 's4':mark_list[x]['s4'], 's5':mark_list[x]['s5'], 's6':mark_list[x]['s6']})
-    #students_list[x].update({'s'+y: mark_list[x]['s'+y] for y in range(1,7)})
-    mem += mark_list[x]['s1'] + mark_list[x]['s2'] + mark_list[x]['s3'] + mark_list[x]['s4'] + mark_list[x]['s5'] + mark_list[x]['s6']
+   # students_list[x].update({'s1':mark_list[x]['s1'], 's2':mark_list[x]['s2'], 's3':mark_list[x]['s3'],
+                        #     's4':mark_list[x]['s4'], 's5':mark_list[x]['s5'], 's6':mark_list[x]['s6']})
+    students_list[x].update({'s'+str(y): mark_list[x]['s'+str(y)] for y in range(1,7)})
+    mem += mark_list[x]['s1'] + mark_list[x]['s2'] + mark_list[x]['s3'] + mark_list[x]['s4'] + \
+           mark_list[x]['s5'] + mark_list[x]['s6']
     mem = float(mem)/6
     memo += mem
     students_list[x].update({'med':mem})
@@ -84,12 +87,12 @@ for x in range(len(students_list)):
     m4 += mark_list[x]['s4']
     m5 += mark_list[x]['s5']
     m6 += mark_list[x]['s6']
-exellent_students=[]
 exellent_students = [{'fio': x['fio']} for x in students_list if x['med'] > 4.5]
 bad_students = [{'fio': x['fio']} for x in students_list if x['med'] < 3]
 Student('статистика по предметам', ' ', ' ')
 
-students_list[11].update({'s1':float(m1)/11, 's2':float(m2)/11, 's3':float(m3)/11, 's4':float(m4)/11, 's5':float(m5)/11, 's6':float(m6)/11, 'med':float(memo)/11})
+students_list[11].update({'s1':round((float(m1)/11),2), 's2':round((float(m2)/11),2), 's3':round((float(m3)/11),2),
+                          's4':round((float(m4)/11),2), 's5':float(m5)/11, 's6':float(m6)/11, 'med':float(memo)/11})
 
 
 class IndexView(TemplateView):
