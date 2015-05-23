@@ -11,34 +11,34 @@
         <div class="container">
             <h1 style="text-align:center;">Лабораторная работа №1</h1>
 
-            <h2>Успеваемость студентов гр. 723</h2>
+            <h2>Успеваемость студентов гр. 743</h2>
             <table class="table table-striped">
                 <thead>
                 <tr>
-                  <th>#</th>
+                  <th>№</th>
                   <th>ФИО</th>
-                  <th>ТиМП</th>
-                  <th>ЭиС</th>
-                  <th>Философия</th>
-                  <th>Иностранный язык</th>
-                  <th>Физическая культура</th>
+                  <th>Тервер</th>
+                  <th>Дискретная математика</th>
+                  <th>БД</th>
+                  <th>Финансы</th>
+                  <th>Тимп</th>
                   <th>Средний балл</th>
                 </tr>
                 </thead>
                 <tbody>
-                    {% for student in students_statistics %}
+                   {% for student in students_statistics %}
                         <tr>
                             <th scope="row">{{student.id}}</th>
                             <td>{{student.fio}}</td>
+                            <td>{{student.terver}}</td>
+                            <td>{{student.dm}}</td>
+                            <td>{{student.bd}}</td>
+                            <td>{{student.finansy}}</td>
                             <td>{{student.timp}}</td>
-                            <td>{{student.eis}}</td>
-                            <td>{{student.philosophy}}</td>
-                            <td>{{student.english}}</td>
-                            <td>{{student.sport}}</td>
                             <td>{{student.average}}</td>
                         </tr>
                     {% endfor %}
-                </tbody>
+                    </tbody>
             </table>
             <h4>Отличники:{{excellent_students}}</h4>
             <h4>Отчислить:{{bad_students}}</h4>
