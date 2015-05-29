@@ -2,6 +2,7 @@
 import random
 from django.views.generic.base import TemplateView
 
+
 class Person:
     def __init__(self, fio):
         #конструктор класса Person
@@ -45,7 +46,7 @@ class Statistics:
 st1 = Statistics()
 st1.student = Student(1, 743, 18)
 st1.student.fio = 'Алексеев Алексей Алексеевич'
-st1.score(4, 4, 3, 3, 4)
+st1.score(2, 2, 2, 2, 2)
 st2 = Statistics()
 st2.student = Student(2, 743, 19)
 st2.student.fio = 'Иванов Иван Иванович'
@@ -105,6 +106,11 @@ class IndexView(TemplateView):
                     }
                 for s in [st1, st2, st3, st4, st5]
             ],
+            'm0': terver,
+            'm1': dm,
+            'm2': bd,
+            'm3': finansy,
+            'm4': timp,
             'excellent_students': excellent_students,
             'bad_students': bad_students
             }
