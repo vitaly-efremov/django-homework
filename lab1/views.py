@@ -60,6 +60,12 @@ for i in range(len(list_students)):
 info = []
 good_students = ' '
 bad_students = ' '
+timp_avg = 0
+eis_avg = 0
+philosophy_avg = 0
+english_avg = 0
+sport_avg = 0
+
 
 for i in range(len(list_students)):
     information = {
@@ -74,11 +80,32 @@ for i in range(len(list_students)):
                      list_score[i+3].value + list_score[i+4].value)/5.0
     }
 
-    if information['average'] > 4.5:
+    timp_avg += list_score[i].value
+    eis_avg += list_score[i+1].value
+    philosophy_avg += list_score[i+2].value
+    english_avg += list_score[i+3].value
+    sport_avg += list_score[i+4].value
+
+    if information['average'] > 3.5:
         good_students += list_students[i].fio + ', '
-    if information['average'] < 3:
+    if information['average'] <= 3:
         bad_students += list_students[i].fio + ', '
     info.append(information)
+
+timp_avg /= float(len(list_students))
+eis_avg /= float(len(list_students))
+philosophy_avg /= float(len(list_students))
+english_avg /= float(len(list_students))
+sport_avg /= float(len(list_students))
+
+information = {
+    'timp':timp_avg,
+    'eis':eis_avg,
+    'philosophy':philosophy_avg,
+    'english':english_avg,
+    'sport':sport_avg
+}
+info.append(information)
 
 
 bad_students = bad_students[: len(bad_students)-2]
