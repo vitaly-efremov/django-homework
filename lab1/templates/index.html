@@ -9,39 +9,142 @@
 	</head>
 	<body>
         <div class="container">
-            <h1 style="text-align:center;">Лабораторная работа №1</h1>
-
-            <h2>Успеваемость студентов гр. 723</h2>
+            <h1 style="text-align:center;">Лабораторная работа №2</h1>
+            <h2>Завести нового клиента</h2>
+             <form action="/client_add/" method=post>
+                 № <input type=text name="nomer_id" size=15 height=100% >
+                 Фамилия <input type=text name="familia" size=15 height=100% >
+                 Имя <input type=text name="name" size=15 height=100% >
+                 Отчество <input type=text name="otchestvo" size=15 height=100% >
+                 Пол <input type=text name="pol" size=15 height=100% >
+                 Дата рождения (ГГГГ-ММ-ДД) <input type=text name="data" size=15 height=100% >
+                 Номер телефона <input type=text name="mobile" size=15 height=100% >
+                 Номер_договора <input type=text name="nomer_dogovora" size=15 height=100% >
+                <input type="submit"/>
+             </form>
+            <h4 style="text-align:center;">Клиент</h4>
             <table class="table table-striped">
                 <thead>
                 <tr>
+                  <th>_</th>
                   <th>#</th>
-                  <th>ФИО</th>
-                  <th>ТиМП</th>
-                  <th>ЭиС</th>
-                  <th>Философия</th>
-                  <th>Иностранный язык</th>
-                  <th>Физическая культура</th>
-                  <th>Средний балл</th>
+                  <th>Фамилия</th>
+                  <th>Имя</th>
+                  <th>Отчество</th>
+                  <th>Пол</th>
+                  <th>Дата рождения</th>
+                  <th>Телефон</th>
+                  <th>Номер договора</th>
                 </tr>
                 </thead>
                 <tbody>
-                    {% for student in students_statistics %}
-                        <tr>
-                            <th scope="row">{{student.id}}</th>
-                            <td>{{student.fio}}</td>
-                            <td>{{student.timp}}</td>
-                            <td>{{student.eis}}</td>
-                            <td>{{student.philosophy}}</td>
-                            <td>{{student.english}}</td>
-                            <td>{{student.sport}}</td>
-                            <td>{{student.average}}</td>
-                        </tr>
-                    {% endfor %}
+                <tr>
+                    <th scope="row">{{Client.id}}</th>
+                    <td>{{Client.nomer_id}}</td>
+                    <td>{{Client.familia}}</td>
+                    <td>{{Client.name}}</td>
+                    <td>{{Client.otchestvo}}</td>
+                    <td>{{Client.pol}}</td>
+                    <td>{{Client.data}}</td>
+                    <td>{{Client.mobile}}</td>
+                    <td>{{Client.nomer_dogovora}}</td>
+                    <td><form action='/delete_info/' method=post>
+                        {% csrf_token %}
+                        <button name="delete_info" value="{{Client.id}}">Удалить</button>
+                    </form></td>
+                </tr>
                 </tbody>
             </table>
-            <h4>Отличники:{{excellent_students}}</h4>
-            <h4>Отчислить:{{bad_students}}</h4>
+
+            <h2>Завести новый договор</h2>
+             <form action="/dogov_add/" method=post>
+                 № <input type=text name="iddog" size=15 height=100% >
+                 Условия <input type=text name="uslov" size=15 height=100% >
+                 Дата <input type=text name="data1" size=15 height=100% >
+                 Код карты <input type=text name="idcard" size=15 height=100% >
+                 {% csrf_token %}
+                <input type="submit"/>
+             </form>
+            <h4 style="text-align:center;">Договор</h4>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>_</th>
+                  <th>Номер договора</th>
+                  <th>Условие</th>
+                  <th>Дата</th>
+                  <th>Номер карты</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">{{Dogov.id}}</th>
+                    <td>{{Dogov.iddog}}</td>
+                    <td>{{Dogov.uslov}}</td>
+                    <td>{{Dogov.data1}}</td>
+                    <td>{{Dogov.idcard}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h2>Завести новую карту</h2>
+             <form action="/card_add/" method=post>
+                 № <input type=text name="idcard" size=15 height=100% >
+                 Условия <input type=text name="valid" size=15 height=100% >
+                 Дата <input type=text name="data2" size=15 height=100% >
+                 Код карты <input type=text name="nomer_oper" size=15 height=100% >
+                 {% csrf_token %}
+                <input type="submit"/>
+             </form>
+            <h4 style="text-align:center;">Карта</h4>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>_</th>
+                  <th>Номер карты</th>
+                  <th>Валидность (просроченность)</th>
+                  <th>Дата</th>
+                  <th>Номер операции</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">{{Card.id}}</th>
+                    <td>{{Card.idcard}}</td>
+                    <td>{{Card.valid}}</td>
+                    <td>{{Card.data2}}</td>
+                    <td>{{Card.nomer_oper}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h2>Внести новую операцию</h2>
+             <form action="/oper_add/" method=post>
+                 № операции <input type=text name="nomer_oper" size=15 height=100% >
+                 Операция <input type=text name="opera" size=15 height=100% >
+                 Дата <input type=text name="data3" size=15 height=100% >
+                 {% csrf_token %}
+                <input type="submit"/>
+             </form>
+            <h4 style="text-align:center;">Операция</h4>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>_</th>
+                  <th>Номер операции</th>
+                  <th>Операция</th>
+                  <th>Дата</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">{{Oper.id}}</th>
+                    <td>{{Oper.nomer_oper}}</td>
+                    <td>{{Oper.opera}}</td>
+                    <td>{{Oper.data3}}</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
 	</body>
 </html>
