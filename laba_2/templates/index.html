@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+        <div class="container">
+            <h1 style="text-align:center;">Лаба 2</h1>
+
+            <h2>Список клиентов</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Фамилия</th>
+                  <th>Имя</th>
+                  <th>Отчество</th>
+                  <th>Пасп. данные</th>
+                  <th>Телефон</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for c in clients %}
+                        <tr>
+                            <th scope="row">{{ c.id }}</th>
+                            <td>{{ c.fam }}</td>
+                            <td>{{ c.name }}</td>
+                            <td>{{ c.otch }}</td>
+                            <td>{{ c.passport }}</td>
+                            <td>{{ c.phone }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <h2>Список работников</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Фамилия</th>
+                  <th>Имя</th>
+                  <th>Отчество</th>
+                  <th>Должность</th>
+                  <th>Дата рождения</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for m in masters %}
+                        <tr>
+                            <th scope="row">{{ m.id }}</th>
+                            <td>{{ m.fam }}</td>
+                            <td>{{ m.name }}</td>
+                            <td>{{ m.otch }}</td>
+                            <td>{{ m.qualification }}</td>
+                            <td>{{ m.birth }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <h2>Заявки на ремонт</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>Клиент</th>
+                  <th>Мастер</th>
+                  <th>Описание проблемы</th>
+                  <th>Дата</th>
+                  <th>Мин. стоимость</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for r in rep %}
+                        <tr>
+                            <td>{{ r.client.client_name }}</td>
+                            <td>{{ r.master.master_name }}</td>
+                            <td>{{ r.description }}</td>
+                            <td>{{ r.date }}</td>
+                            <td>{{ r.min_cost }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+	</body>
+</html>
