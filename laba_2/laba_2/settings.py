@@ -76,10 +76,10 @@ WSGI_APPLICATION = 'laba_2.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'uhjunoto',
-        'USER': 'uhjunoto',
-        'PASSWORD': 'w8wPz4gfww17GuQe85fqMdvX_EOKoItw',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'aypqjcxb',
+        'USER': 'aypqjcxb',
+        'PASSWORD': 'IAgqLeDf6IzJLY51NZXy_0BZyxu3lHAP',
         'HOST': 'horton.elephantsql.com',
         'PORT': '5432'
     }
