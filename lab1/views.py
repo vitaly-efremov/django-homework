@@ -33,12 +33,12 @@ class Student:
 
 
 class Statistics:
-    # student_id, [Subjects]
+    # student_id, [Scores]
     pass
 
 class Subject:
     pass
 
 class Score:
-    # Subject,
+    # Subject, Student, value
     pass
