@@ -8,14 +8,16 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         statistict_stud = []
-        b = Student([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'])
-        c = Subject(['timp', 'eis', 'philosophy', 'english', 'sport'])
-        d = Score([[5, 5, 5, 5, 5], [2, 3, 4, 5, 4], [3, 5, 2, 2, 5], [3, 5, 5, 2, 5], [3, 5, 2, 4, 5], [2, 5, 2, 2, 5], [3, 5, 4, 4, 5], [3, 5, 2, 2, 2], [3, 5, 3, 3, 5], [3, 5, 4, 3, 5]], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        students = Student([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'])
+        subject = Subject(['timp', 'eis', 'philosophy', 'english', 'sport'])
+        score = Score([[5, 5, 5, 5, 5], [2, 3, 4, 5, 4], [3, 5, 2, 2, 5], [3, 5, 5, 2, 5], [3, 5, 2, 4, 5],
+                   [2, 5, 2, 2, 5], [3, 5, 4, 4, 5], [3, 5, 2, 2, 2], [3, 5, 3, 3, 5], [3, 5, 4, 3, 5]],
+                   [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
         for i in range(1,11):
-            a = Statistics(d.get_grades(i))
-            statistict_stud.append(a.format_record(i, b.get_fio(i), c.get_subject()))
-        bad_stud = ', '.join(b.get_fio(i) for i in d.bed_student())
-        excellent_stud = ', '.join(b.get_fio(i) for i in d.excellent_student(5))
+            statistics = Statistics(score.get_grades(i))
+            statistict_stud.append(statistics.format_record(i, students.get_fio(i), subject.get_subject()))
+        bad_stud = ', '.join(students.get_fio(i) for i in score.bed_student())
+        excellent_stud = ', '.join(students.get_fio(i) for i in score.excellent_student(5))
         
         context.update(
             {
