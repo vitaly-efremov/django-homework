@@ -50,10 +50,10 @@ for i in range(len(stdnts)):
 stts.append({
     'student ' : stdnts, 
     ' id ' : p_id, 
-    'эис': ss[i]['эис']
-    'Физика': ss[i]['Физика']
-    'Програмирование': ss[i]['Програмирование']
-    'МатАн': ss[i]['МатАн']   
+    'ТиМП': ss[i]['эис']
+    'ЭиС': ss[i]['Физика']
+    'Философия': ss[i]['Програмирование']
+    'Ин. Яз': ss[i]['МатАн']   
     'Физ-ра': ss[i]['Физ-ра']  
     'Средний бал': value
     }) 
@@ -64,8 +64,8 @@ class score:
  def crt_ss(stdnts):
      ss= []
      for i in stdnts:
-         ss.append({ ' ЭИС ':random.randint(0, 5) , ' Физика ':random.randint(0, 5) , 
-         'Програмирование':random.randint(0, 5) , 'МатАн':random.randint(0, 5) , 'Физ-ра':random.randint(0, 5) })
+         ss.append({ ' ТиМП ':random.randint(0, 5) , ' ЭиС ':random.randint(0, 5) , 
+         'Философия':random.randint(0, 5) , 'Ин. Яз':random.randint(0, 5) , 'Физ-ра':random.randint(0, 5) })
 return ss
 
 
