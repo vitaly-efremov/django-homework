@@ -11,7 +11,7 @@ class IndexView(TemplateView):
             {
                 'students_statistics': [
                     {
-                        'id': 1,
+                        'id': 11,
                         'fio': 'Someone',
                         'timp': 2,
                         'eis': 3,
