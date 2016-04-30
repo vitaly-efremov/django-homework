@@ -7,29 +7,42 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
+        stdnts = [ 'Первый Первый ' , ' Второй Второй' , ' Третий Третий ' , ' Четвертый Четвертый ' , 
+                    ' Пятый Пятый' , ' Шестой Шестой ' , ' Седьмой Седьмой ' , ' Восьмой Восьмой ' ,
+                    ' Девятый Девятый ' , ' Десятый Десятый ']
+        bstdnts = [] # bad student
+        gstdnts = [] # Good student(point = 5)
+        point = point.crt_point(stdnts) 
+        P_id = sdnts.crt_id(stdnts)
+        stts= [] # stdnts, points, P_ids
+        subj= [ ' smthng1 ' , ' smthng2 ' , 'smthng3' , 'smthng4' , 'smthng5' ]
+        
+        for i in range(len(stdnts)):
+            point=
+        
+        
+        
+        
+        
+        
+        
+        
         context.update(
             {
-                'students_statistics': [
-                    {
-                        'id': 11,
-                        'fio': 'Someone',
-                        'timp': 2,
-                        'eis': 3,
-                        'philosophy': 4,
-                        'english': 5,
-                        'sport': 2.3,
-                        'average': 2.3,
-                    }
-                ],
-                'excellent_students': 'Student A, Student B',
-                'bad_students': 'Student C, Student D'
+                'students_statistics': stdnts,
+                'excellent_students': gstdnts,
+                'bad_students': bsdtnts
             }
         )
         return context
 
 
 class Student:
-    pass
+    def crt_id(stdnts)
+        P_id=[]
+        for i in range(len(stdnts)):
+            p_id.append(i)
+            return P_id
 
 
 class Statistics:
