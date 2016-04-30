@@ -14,7 +14,7 @@ class IndexView(TemplateView):
         gstdnts = sort.find(stdnts) # Good student(point = 5)
         ss = score.crt_ss(stdnts) # 1st S-subject; 2nd S-score 
         p_id = ids.crt_id(stdnts)
-        stts= [] # stdnts, points, P_ids
+        stts= sort.find(stdnts,ss,p_id) # stdnts, points, P_ids
         
         
         for i in range(len(stdnts)):
