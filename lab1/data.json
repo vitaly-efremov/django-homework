@@ -1,0 +1,111 @@
+{
+	"subjects": [
+		"english",
+		"timp",
+		"sport",
+		"philosophy",
+		"eis"
+	],
+	"students": [
+		{
+			"fn": "Аримпилов Станислав Николаевич",
+			"scores": {
+				"english": 4,
+				"timp": 5,
+				"sport": 2,
+				"philosophy": 3,
+				"eis": 5
+			}
+		},
+		{
+			"fn": "Бомбов Антон Ярославович",
+			"scores": {
+				"english": 5,
+				"timp": 5,
+				"sport": 5,
+				"philosophy": 4,
+				"eis": 5
+			}
+		},
+		{
+			"fn": "Ковальчук Анастасия Олеговна",
+			"scores": {
+				"english": 4,
+				"timp": 5,
+				"sport": 4,
+				"philosophy": 4,
+				"eis": 5
+			}
+		},
+		{
+			"fn": "Ковчунов Петр Александрович",
+			"scores": {
+				"english": 5,
+				"timp": 4,
+				"sport": 2,
+				"philosophy": 3,
+				"eis": 3
+			}
+		},
+		{
+			"fn": "Крупина Алиса Александровна",
+			"scores": {
+				"english": 4,
+				"timp": 5,
+				"sport": 5,
+				"philosophy": 3,
+				"eis": 4
+			}
+		},
+		{
+			"fn": "Кучаев Николай Алексеевич",
+			"scores": {
+				"english": 5,
+				"timp": 5,
+				"sport": 0,
+				"philosophy": 2,
+				"eis": 5
+			}
+		},
+		{
+			"fn": "Лекаторчук Сергей Валерьевич",
+			"scores": {
+				"english": 5,
+				"timp": 5,
+				"sport": 0,
+				"philosophy": 3,
+				"eis": 2
+			}
+		},
+		{
+			"fn": "Мусиенко Юрий Владимирович",
+			"scores": {
+				"english": 4,
+				"timp": 5,
+				"sport": 4,
+				"philosophy": 3,
+				"eis": 3
+			}
+		},
+		{
+			"fn": "Нестеров Никита Сергеевич",
+			"scores": {
+				"english": 0,
+				"timp": 0,
+				"sport": 0,
+				"philosophy": 2,
+				"eis": 2
+			}
+		},
+		{
+			"fn": "Перминов Петр Витальевич",
+			"scores": {
+				"english": 4,
+				"timp": 5,
+				"sport": 5,
+				"philosophy": 4,
+				"eis": 5
+			}
+		}
+	]
+}
