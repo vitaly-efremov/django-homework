@@ -11,6 +11,8 @@ admin.autodiscover()
 site_media = os.path.join(os.path.dirname(__file__), 'static')
 
 urlpatterns = patterns('',
-    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': site_media}),
-    url(r'^$', IndexView.as_view()),
-)
+                       url(r'^static/(?P<path>.*)$',
+                           'django.views.static.serve',
+                           {'document_root': site_media}),
+                       url(r'^$', IndexView.as_view()),
+                       )
