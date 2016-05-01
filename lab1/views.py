@@ -1,79 +1,82 @@
 # -*- coding: utf-8 -*-
 from django.views.generic.base import TemplateView
-
+import random
 
 class IndexView(TemplateView):
-    template_name = "index.html"
+	template_name = "index.html"
 
-    def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
-        stdnts = [ 'Первый Первый ' , ' Второй Второй' , ' Третий Третий ' , ' Четвертый Четвертый ' , 
-                    ' Пятый Пятый' , ' Шестой Шестой ' , ' Седьмой Седьмой ' , ' Восьмой Восьмой ' ,
-                    ' Девятый Девятый ' , ' Десятый Десятый ']
-        bstdnts = sort.find(stdnts) 
-        gstdnts = sort.find(stdnts) # Good student(point = 5)
-        ss = score.crt_ss(stdnts) # 1st S-subject; 2nd S-score 
-        p_id = ids.crt_id(stdnts)
-        stts= sort.find(stdnts,ss,p_id) # stdnts, points, P_ids
-        
-        
-        for i in range(len(stdnts)):
-            point=
-        
-        
-        context.update(
-            {
-                'students_statistics': stdnts,
+	def get_context_data(self, **kwargs):
+		context = super(IndexView, self).get_context_data(**kwargs)
+		stdnts = ['Первый Первый', 'Второй Второй', 'Третий Третий','Четвертый Четвертый', 
+                    'Пятый Пятый','Шестой Шестой','Седьмой Седьмой',' Восьмой Восьмой',
+                    'Девятый Девятый','Десятый Десятый']
+		
+		b=len(stdnts)
+		bstdnts=[]
+		gstdnts=[]
+		stts=[]
+		
+		p_id = student.crt_id(stdnts)
+		ss = Score.crt_ss(stdnts)
+		
+		stts= sort.find(stdnts,ss,gstdnts, bstdnts,stts, p_id) # stdnts, points, P_ids
+		
+		context.update(
+			{
+				'students_statistics': stts,
                 'excellent_students': gstdnts,
-                'bad_students': bsdtnts
-            }
-        )
-        return context
+                'bad_students': bstdnts
+			}
+		)
+		return context
 
-
-class ids:
-    def crt_id(stdnts)
-        P_id=[]
-        for i in range(len(stdnts)):
-            p_id.append(i)
-            return P_id
-
+class student:
+	def crt_id(stdnts):
+		p_id=[]
+		for i in range(len(stdnts)):
+			p_id.append(i)
+		return p_id
 
 class sort: # sorting students on bad and good
-def find(stdnts,ss,p_id)
-for i in range(len(stdnts)):
-   value = statistics.crt_value(stdnts[i])
-   if value >=3.5:
-       gstdnts.appen(stdnts[i])
-    elif value <=3.5:
-        bstdnts.append(stdnts[i])
-stts.append({
-    'student ' : stdnts, 
-    ' id ' : p_id, 
-    'ТиМП': ss[i]['эис']
-    'ЭиС': ss[i]['Физика']
-    'Философия': ss[i]['Програмирование']
-    'Ин. Яз': ss[i]['МатАн']   
-    'Физ-ра': ss[i]['Физ-ра']  
-    'Средний бал': value
-    }) 
-   return stts
+	def find(stdnts, ss, gstdnts, bstdnts,stts, p_id):
+		p=-1
+		for i in range(len(stdnts)):
+			p=p+1
+			if p<=len(stdnts):
+				value = Score.crt_value(ss[p])
+				if value >=2.7:
+					gstdnts.append(stdnts[p])
+				
+				elif value <=2.7: 
+					bstdnts.append(stdnts[p])
+				stts.append({ 
+				'id': p_id[p]+1,
+				'student': stdnts[p],   
+				'ТиМП': ss[p]['ТиМП'],
+				'ЭиС': ss[p]['ЭиС'],
+				'Философия': ss[p]['Философия'], 
+				'ИнЯз': ss[p]['ИнЯз'], 
+				'Физра': ss[p]['Физ-ра'],   
+				'Среднийбал': value}) 	\
+		
+		return stts
+		
    
+class Score:
+	def crt_ss(stdnts):
+		ss=[]
+		v=0
+		for i in stdnts:
+			ss.append({'ТиМП':random.randint(0,5),			'ЭиС':random.randint(0,5), 
+						'Философия':random.randint(0,5),	'ИнЯз':random.randint(0,5),
+						'Физ-ра':random.randint(0,5)})
+			
+		return ss
 
-class score:
- def crt_ss(stdnts):
-     ss= []
-     for i in stdnts:
-         ss.append({ ' ТиМП ':random.randint(0, 5) , ' ЭиС ':random.randint(0, 5) , 
-         'Философия':random.randint(0, 5) , 'Ин. Яз':random.randint(0, 5) , 'Физ-ра':random.randint(0, 5) })
-return ss
-
-
-class Statistics:
-   def crt_value(ss):
-       v=0
-       for score in ss.values():
-           V += score 
-           value = v/5
-           return value
+	def crt_value(sss):
+		v=0
+		for score in sss.values():
+			v += score 
+		value = v / 5
+		return value
     
