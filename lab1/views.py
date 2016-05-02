@@ -17,7 +17,7 @@ class IndexView(TemplateView):
             statistics = Statistics(score.get_grades(i))
             statistict_stud.append(statistics.format_record(i, students.get_fio(i), subject.get_subject()))
         bad_stud = ', '.join(students.get_fio(i) for i in score.bed_student())
-        excellent_stud = ', '.join(students.get_fio(i) for i in score.excellent_student(5))
+        excellent_stud = ', '.join(students.get_fio(i) for i in score.excellent_student())
         
         context.update(
             {
@@ -61,7 +61,7 @@ class Score(object):
         return self.student_assessment.setdefault(student_id)
     def bed_student(self):
         tmp = self.student_assessment.items()
-        return [i[0] for i in tmp if i[1].count(2) != 0]
-    def excellent_student(self, number_of_subjects):
+        return [i[0] for i in tmp if i[1].count(2)]
+    def excellent_student(self):
         tmp = self.student_assessment.items()
-        return [i[0] for i in tmp if i[1].count(5) == number_of_subjects]    
+        return [i[0] for i in tmp if i[1].count(5) == len(i[1])]    
