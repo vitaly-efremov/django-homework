@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -6,23 +6,32 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<style>
+   body {
+    background: #C0C0C0; /* Цвет фона */
+    color: #006400; /* Цвет текста */
+   }
+  </style>
 	</head>
 	<body>
         <div class="container">
-            <h1 style="text-align:center;">Лабораторная работа №1</h1>
+            <h1 style="text-align:center;">Лабораторная работа №1 ТИМП</h1>
 
-            <h2>Успеваемость студентов гр. 723</h2>
+            <h2>Успеваемость студентов гр. 744</h2>
             <table class="table table-striped">
                 <thead>
                 <tr>
-                  <th>#</th>
+                  <th>№</th>
                   <th>ФИО</th>
                   <th>ТиМП</th>
-                  <th>ЭиС</th>
-                  <th>Философия</th>
-                  <th>Иностранный язык</th>
-                  <th>Физическая культура</th>
-                  <th>Средний балл</th>
+                  <th>ТИ</th>
+                  <th>Глупый бесполезный предмет</th>
+                  <th>Ин. яз.</th>
+                  <th>Физ-ра</th>
+		  <th>ТВиМС</th>
+                  <th>БОС</th>
+	          <th>Базы данных</th>
+		  <th>Средний балл</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,17 +40,20 @@
                             <th scope="row">{{student.id}}</th>
                             <td>{{student.fio}}</td>
                             <td>{{student.timp}}</td>
-                            <td>{{student.eis}}</td>
+                            <td>{{student.ti}}</td>
                             <td>{{student.philosophy}}</td>
                             <td>{{student.english}}</td>
                             <td>{{student.sport}}</td>
+			    <td>{{student.twims}}</td>
+			    <td>{{student.BDiES}}</td>
+			    <td>{{student.BOS}}</td>
                             <td>{{student.average}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <h4>Отличники:{{excellent_students}}</h4>
-            <h4>Отчислить:{{bad_students}}</h4>
+            <h3>Отличники:{{excellent_students}}</h3>
+            <h3>Отчислить:{{bad_students}}</h3>
         </div>
 	</body>
 </html>
