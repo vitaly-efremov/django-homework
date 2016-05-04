@@ -1,24 +1,23 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8" />
-		<title></title>
+	<meta charset="utf-8" />
+	<title></title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	</head>
-	<body>
+	<body style="color:Black; background-color:#9da0c5">
         <div class="container">
-            <h1 style="text-align:center;">Лабораторная работа №1</h1>
-
-            <h2>Успеваемость студентов гр. 723</h2>
+            <h1 style="text-align:center;">Таблица успеваемости студентов</h1>
+            <h2>Группа 744</h2>
             <table class="table table-striped">
                 <thead>
                 <tr>
                   <th>#</th>
                   <th>ФИО</th>
                   <th>ТиМП</th>
-                  <th>ЭиС</th>
+                  <th>Финансы</th>
                   <th>Философия</th>
                   <th>Иностранный язык</th>
                   <th>Физическая культура</th>
@@ -31,7 +30,7 @@
                             <th scope="row">{{student.id}}</th>
                             <td>{{student.fio}}</td>
                             <td>{{student.timp}}</td>
-                            <td>{{student.eis}}</td>
+                            <td>{{student.finansy}}</td>
                             <td>{{student.philosophy}}</td>
                             <td>{{student.english}}</td>
                             <td>{{student.sport}}</td>
