@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -11,17 +11,17 @@
         <div class="container">
             <h1 style="text-align:center;">Лабораторная работа №1</h1>
 
-            <h2>Успеваемость студентов гр. 723</h2>
+            <h2>Успеваемость студентов гр. 724</h2>
             <table class="table table-striped">
                 <thead>
                 <tr>
                   <th>#</th>
                   <th>ФИО</th>
+                  <th>БОС</th>
+                  <th>БСБД</th>
                   <th>ТиМП</th>
-                  <th>ЭиС</th>
-                  <th>Философия</th>
-                  <th>Иностранный язык</th>
-                  <th>Физическая культура</th>
+                  <th>ЭИС</th>
+                  <th>ФК</th>
                   <th>Средний балл</th>
                 </tr>
                 </thead>
@@ -30,11 +30,11 @@
                         <tr>
                             <th scope="row">{{student.id}}</th>
                             <td>{{student.fio}}</td>
-                            <td>{{student.timp}}</td>
-                            <td>{{student.eis}}</td>
-                            <td>{{student.philosophy}}</td>
-                            <td>{{student.english}}</td>
-                            <td>{{student.sport}}</td>
+                            <td>{{student.s1}}</td>
+                            <td>{{student.s2}}</td>
+                            <td>{{student.s3}}</td>
+                            <td>{{student.s4}}</td>
+                            <td>{{student.s5}}</td>
                             <td>{{student.average}}</td>
                         </tr>
                     {% endfor %}
