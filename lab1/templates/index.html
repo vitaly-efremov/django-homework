@@ -37,7 +37,48 @@
                 <tbody>
                     {% for student in students_statistics %}
                         <tr>
-                            <th scope="row">{{student.id}}</th>
+                            <th scope="row">{{student.nomer}}</th>
+                            <td>{{student.fio}}</td>
+                            <td>{{student.timp}}</td>
+                            <td>{{student.ti}}</td>
+                            <td>{{student.philosophy}}</td>
+                            <td>{{student.english}}</td>
+                            <td>{{student.sport}}</td>
+			    <td>{{student.twims}}</td>
+			    <td>{{student.BDiES}}</td>
+			    <td>{{student.BOS}}</td>
+                            <td>{{student.average}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <h3>Отличники:{{excellent_students}}</h3>
+            <h3>Отчислить:{{bad_students}}</h3>
+        </div>
+ <div class="container">
+            <h1 style="text-align:center;">Лабораторная работа №1 ТИМП</h1>
+
+            <h2>Успеваемость студентов гр. 744</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>№</th>
+                  <th>ФИО</th>
+                  <th>ТиМП</th>
+                  <th>ТИ</th>
+                  <th>Глупый бесполезный предмет</th>
+                  <th>Ин. яз.</th>
+                  <th>Физ-ра</th>
+		  <th>ТВиМС</th>
+                  <th>БОС</th>
+	          <th>Базы данных</th>
+		  <th>Средний балл</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for student in students_statistics %}
+                        <tr>
+                            <th scope="row">{{student.nomer}}</th>
                             <td>{{student.fio}}</td>
                             <td>{{student.timp}}</td>
                             <td>{{student.ti}}</td>

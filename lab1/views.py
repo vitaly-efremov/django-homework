@@ -1,24 +1,25 @@
 # -*- coding: utf-8 -*-
 from django.views.generic.base import TemplateView
 
-class Person:
+class set_Human(object):
     def __init__(self, fio):
         self.fio = fio
 
 
-class Student(Person):
-    def __init__(self, id, group):
-        self.id = id
+class Student(set_Human):
+    def __init__(self, nomer, group, fio):
+        super(Student, self).__init__(fio)
+        self.nomer = nomer
         self.group = group
 
 
-class Subject:
-    def __init__(self, id, name):
-        self.id = id
+class Subject(object):
+    def __init__(self, nomer, name):
+        self.id = nomer
         self.name = name
 
 
-class Score:
+class Score(object):
     def __init__(self, student, subject, value):
         self.student = student
         self.subject = subject
@@ -29,8 +30,8 @@ class Statistics:
     def __init__(self):
         self.stat = ()
 
-    def student(self, id, group):
-        self.student = Student(id, group)
+    def student(self, nomer, group):
+        self.student = Student(nomer, group)
 
     def score(self, timp, eis, fil, inz, fiz, ti, twims, BDiES, BOS):
         self.timp = Score(self.student, sub1, timp)                 
@@ -44,8 +45,8 @@ class Statistics:
         self.BOS = Score(self.student, sub9, BOS)
 
     def average(self):
-        self.average = float(self.fiz.value + self.eis.value + self.fil.value + self.inz.value + self.ti.value + self.twims.value
-                             + self.BDiES.value + self.BOS.value)/8
+        self.average = (self.fiz.value + self.eis.value + self.fil.value + self.inz.value + self.ti.value + self.twims.value
+                             + self.BDiES.value + self.BOS.value)/8.0
 
 
 class IndexView(TemplateView):
@@ -57,7 +58,7 @@ class IndexView(TemplateView):
             {
                 'students_statistics': [
                     {
-                        'id': s.student.id,
+                        'nomer': s.student.nomer,
                         'fio': s.student.fio,
                         'timp': s.timp.value,
                         'eis': s.eis.value,
