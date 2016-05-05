@@ -70,8 +70,47 @@ sub3 = Subject(3, 's3')
 sub4 = Subject(4, 's4')
 sub5 = Subject(5, 's5')
 
+stud1 = Statistics()
+stud1.student = Student(1, 'Jarle')
+stud1.score(5, 4, 2, 3, 5)
 
-main = [stud1, stud2, stud3, stud4, stud5, stud6, stud7, stud8, stud9, stud10, stud11]
+stud2 = Statistics()
+stud2.student = Student(2, 'Ikkeland')
+stud2.score(4, 4, 2, 5, 5)
+
+stud3 = Statistics()
+stud3.student = Student(3, 'Kagerou')
+stud3.score(4, 4, 2, 5, 4)
+
+stud4 = Statistics()
+stud4.student = Student(4, 'Zukin')
+stud4.score(4, 3, 2, 3, 5)
+
+stud5 = Statistics()
+stud5.student = Student(5, 'Koumori')
+stud5.score(5, 5, 5, 5, 5)
+
+stud6 = Statistics()
+stud6.student = Student(6, 'Henpuku')
+stud6.score(3, 2, 2, 3, 3)
+
+stud7 = Statistics()
+stud7.student = Student(7, 'Iteza')
+stud7.score(5, 5, 5, 5, 5)
+
+stud8 = Statistics()
+stud8.student = Student(8, 'Yatarou')
+stud8.score(4, 4, 2, 5, 5)
+
+stud9 = Statistics()
+stud9.student = Student(9, 'Noddie')
+stud9.score(4, 2, 5, 3, 3)
+
+stud10 = Statistics()
+stud10.student = Student(10, 'Mottleweed')
+stud10.score(4, 4, 3 ,5, 3)
+
+main = [stud1, stud2, stud3, stud4, stud5, stud6, stud7, stud8, stud9, stud10]
 for s in main:
     s.average()
 excellent = [s.student.s_name for s in main if s.average == 5]
