@@ -7,5 +7,5 @@ from views import IndexView
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', IndexView.as_view()),
+    url(r'^$', IndexView.as_view() ),
 )
