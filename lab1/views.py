@@ -1,28 +1,24 @@
-# -*- coding: utf-8 -*-
-from django.views.generic.base import TemplateView
-
+ï»¿from django.views.generic.base import TemplateView
 
 class IndexView(TemplateView):
     template_name = "index.html"
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        list = ['Áóñûãèí Èâàí', 'Ãåğàñèìîâ Âÿ÷åñëàâ', 'Åğîõèí Åâãåíèé', 'Êóçíåöîâà Ìàğèÿ', 'Ìàğòûíîâ Ğîìàí', 'Ìàøóêîâ Íèêèòà', 'Ìóõèí Àëåêñåé', 'Ïåõîâà Àííà', '×åğåìíûõ Àëåêñåé', 'Øèâöîâ Äàíèèë']
+        list = ['Ğ›Ğ¾Ğ·Ğ¸Ğ½Ğ³ Ğ’Ğ°Ñ€Ğ²Ğ°Ñ€Ğ°', 'ĞœĞ°Ñ€Ñ‚Ñ‹Ğ½Ğ¾Ğ² Ğ Ğ¾Ğ¼Ğ°Ğ½', 'ĞœĞ°ÑˆÑƒĞºĞ¾Ğ² ĞĞ¸ĞºĞ¸Ñ‚Ğ°', 'ĞœÑƒÑ…Ğ¸Ğ½ ĞĞ»ĞµĞºÑĞµĞ¹', 'ĞœÑĞºĞ¸ÑˆĞµĞ²Ğ° Ğ­Ğ²ĞµĞ»Ğ¸Ğ½Ğ°', 'ĞŸĞµÑ…Ğ¾Ğ²Ğ° ĞĞ½Ğ½Ğ°', 'Ğ¡Ğ°Ğ¿ÑƒĞ½Ğ¾Ğ² ĞĞ½Ñ‚Ğ¾Ğ½', 'Ğ§ĞµÑ€ĞµĞ¼Ğ½Ñ‹Ñ… ĞĞ»ĞµĞºÑĞµĞ¹', 'Ğ¨Ğ¸Ğ²Ñ†Ğ¾Ğ² Ğ”Ğ°Ğ½Ğ¸Ğ¸Ğ»', 'Ğ¤ĞµĞ´ÑƒÑ€Ğ¸Ğ½ ĞÑ€Ñ‚ĞµĞ¼']       
         student = []
-        blacklist = []
-        whitelist = []
+        for i in range(len(list)):
+                student.append(Student(i, list[i]))
         statistics = []
+        whitelist = []
+        blacklist = []
         for i in range(len(list)):
-                student.append(student(i, list[i]))
-        for i in range(len(list)):
-            if student[i].avg >= 3:
+            if student[i].avg >= 4:
                 whitelist.append(student[i].studentname)
             elif student[i].avg < 3:
                 blacklist.append(student[i].studentname)
-            statistics.append({'id': student[i].id, 'fio': student[i].studentname, 'timp': student[i].score[0],
-                                'eis': student[i].score[1], 'philosophy': student[i].score[2], 
-                                'english': student[i].score[3], 'sport': student[i].score[4],
-                                'average': student[i].avg})
+            statistics.append({'id': student[i].id, 'fio': student[i].studentname, 'average': student[i].avg, 'timp': student[i].score[0], 'eis': student[i].score[1],
+                                'philosophy': student[i].score[2], 'english': student[i].score[3], 'sport': student[i].score[4]})
 
         context.update(
             {
@@ -34,7 +30,6 @@ class IndexView(TemplateView):
         )
         return context
 
-
 class Student:
         def __init__(self,num,name):
                 self.studentname = name
@@ -43,21 +38,19 @@ class Student:
                 self.score = Score(self.s).scoreList
                 self.avg = Statistics.getAvg(self.score)
 
-
 class Statistics:
         def getAvg(sc):
                 sum=0
-                num=0
                 for i in sc:
                         sum+=i
-                        num+=1
-                avg=sum/num
+                avg=sum/5
                 return avg
 
 class Subject:
         def __init__(self):
                 self.subjList = ['timp','eis','philosophy','english','sport']
 
+import random
 class Score:
         def __init__(self,subj):
                 self.scoreList = []
