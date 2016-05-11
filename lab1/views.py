@@ -6,8 +6,11 @@ import random
 class IndexView(TemplateView):
     template_name = "index.html"
 
-    def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
+    def get_context_data(self, **kwargs): # занимается формированием контекста
+        context = super(IndexView, self).get_context_data(**kwargs) # kwargs - словарь, распаковывают последовательность и передают ее элементы в функцию.
+        # ** - функция может принимать произвольное число именованных аргументов
+        # context Возвращает словарь, представляющий контекст шаблона.
+        # super возможность использования в классе потомке, методов класса-родителя.
 
 
         students = Student().students # получаем список студентов
@@ -27,7 +30,6 @@ class IndexView(TemplateView):
             elif statistic[i] < 3.0:
                 deduction.append(students[i])
 
-
             total.append({'id': numbers[i], 'fio': students[i], 'timp': score[i][0],
                                 'eis': score[i][1], 'philosophy': score[i][2],
                                 'english': score[i][3], 'sport': score[i][4],
@@ -36,8 +38,8 @@ class IndexView(TemplateView):
         context.update(
             {
                 'students_statistics': total,
-                'excellent_students': good_student,
-                'bad_students': deduction
+                'excellent_students': ', '.join(good_student),
+                'bad_students': ', '.join(deduction)
             }
         )
         return context
@@ -55,7 +57,6 @@ class Student:
         self.id = []
         for i in range(len(self.students)): # получаем список номеров студентов
             self.id.append(i+1)
-            print(self.id)
 
 
 
