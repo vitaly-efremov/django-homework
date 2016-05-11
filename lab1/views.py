@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView # Обрабатывает заданный шаблон, используя контекст(context), содержащий параметры из URL.
 import random
 
 
