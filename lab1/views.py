@@ -68,9 +68,7 @@ class Score(object):
         return self.student_grades[student_id]
 
     def bad_student(self):
-        tmp = self.student_grades.items()
-        return [i[0] for i in tmp if i[1].count(2) or i[1].count(3)]
+	return [i for i in range(1,11) if Statistic(self.get_grades(i))._average_grade() < 4]
 
     def excellent_student(self):
-        tmp = self.student_grades.items()
-        return [i[0] for i in tmp if i[1].count(5) == len(i[1])]    
+        return [i for i in range(1,11) if Statistic(self.get_grades(i))._average_grade() == 5]    
