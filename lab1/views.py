@@ -9,15 +9,15 @@ class IndexView(TemplateView):
         context = super(IndexView, self).get_context_data(**kwargs)
         statistics_stud = []
         students = Student([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], ['Артём', 'Данил', 'Пётр', 'Юля', 'Алиса', 'Ирина', 'Антон', 'Иван', 'Станислав', 'Владимир'])
-        subject = Subject(['timp', 'eis', 'philosophy', 'english', 'sport'])
+        subjects = Subject(['timp', 'eis', 'philosophy', 'english', 'sport'])
         score = Score([[5, 5, 5, 5, 5], [2, 3, 4, 4, 4], [5, 5, 3, 3, 5], [4, 5, 5, 4, 5], [3, 5, 3, 4, 5],
                    [4, 5, 4, 2, 5], [4, 5, 4, 4, 5], [3, 5, 3, 3, 5], [3, 5, 4, 4, 5], [5, 5, 4, 5, 5]],
                    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
         for i in range(1,11):
             statistics = Statistic(score.get_grades(i))
-            statistics_stud.append(statistics.format_record(i, students.get_fio(i), subject.get_subject()))
-        bad_stud = ', '.join(students.get_fio(i) for i in score.bad_student())
-        excellent_stud = ', '.join(students.get_fio(i) for i in score.excellent_student())
+            statistics_stud.append(statistics.format_record(i, students.get_fio(i), subjects.get_subjects()))
+        bad_stud = ', '.join(students.get_fio(i) for i in score.bad_students())
+        excellent_stud = ', '.join(students.get_fio(i) for i in score.excellent_students())
         
         context.update(
             {
@@ -30,8 +30,8 @@ class IndexView(TemplateView):
 
 
 class Student(object):
-    def __init__(self, student_id, fio):
-        self.students = dict(zip(student_id, fio))
+    def __init__(self, students_id, fio):
+        self.students = dict(zip(students_id, fio))
 
     def get_fio(self, student_id):
         return self.students[student_id]
@@ -44,31 +44,30 @@ class Statistic(object):
     def _average_grade(self):
         return float(sum(self.grades))/len(self.grades)
 
-    def format_record(self, student_id, fio, subject):
+    def format_record(self, student_id, fio, subjects):
         information = {'id':student_id, 'fio':fio}
-        journal = dict(zip(subject, self.grades))
-        information.update(journal)
+        information.update(dict(zip(subjects, self.grades)))
         information.update({'average':self._average_grade()})
         return information
 
 
 class Subject(object):
-    def __init__(self, subject):
-        self.subject = subject
+    def __init__(self, subjects):
+        self.subjects = subjects
 
-    def get_subject(self):
-        return self.subject
+    def get_subjects(self):
+        return self.subjects
 
 
 class Score(object):
-    def __init__(self, grades, student_id):
-        self.student_grades = dict(zip(student_id, grades))
+    def __init__(self, grades, students_id):
+        self.student_grades = dict(zip(students_id, grades))
 
     def get_grades(self, student_id):
         return self.student_grades[student_id]
 
-    def bad_student(self):
+    def bad_students(self):
 	return [i for i in range(1,11) if Statistic(self.get_grades(i))._average_grade() < 4]
 
-    def excellent_student(self):
+    def excellent_students(self):
         return [i for i in range(1,11) if Statistic(self.get_grades(i))._average_grade() == 5]    
