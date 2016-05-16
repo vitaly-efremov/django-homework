@@ -5,14 +5,14 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        list = ['Лозинг Варвара', 'Мартынов Роман', 'Машуков Никита', 'Мухин Алексей', 'Мякишева Эвелина', 'Пехова Анна', 'Сапунов Антон', 'Черемных Алексей', 'Шивцов Даниил', 'Федурин Артем']       
+        spisok = ['Лозинг Варвара', 'Мартынов Роман', 'Машуков Никита', 'Мухин Алексей', 'Мякишева Эвелина', 'Пехова Анна', 'Сапунов Антон', 'Черемных Алексей', 'Шивцов Даниил', 'Федурин Артем']       
         student = []
-        for i in range(len(list)):
-                student.append(Student(i, list[i]))
+        for i in range(len(spisok)):
+                student.append(Student(i, spisok[i]))
         statistics = []
         whitelist = []
         blacklist = []
-        for i in range(len(list)):
+        for i in range(len(spisok)):
             if student[i].avg >= 4:
                 whitelist.append(student[i].studentname)
             elif student[i].avg < 3:
