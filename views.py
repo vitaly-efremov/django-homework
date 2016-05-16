@@ -9,7 +9,7 @@ class IndexView(TemplateView):
         context = super(IndexView, self).get_context_data(**kwargs)
         statistict_studs = []
         students = Student([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], ['Перминов Петр Витальевич', 'Рыбин Алексей Иванович', 'Петров Андрей Сергеевич', 'Сидоров Юрий Витальевич', 'Долохов Эльдар Романович', 'Краснова Мария Андреевна', 'Орехов Илья Николаевич', 'Валенкова Ирина Николаевна', 'Пупс Екатерина Борисовна', 'Бомбов Антон Ярославович'])
-        subjects = Subject(['Мат.анализ', 'Программирование', 'Физика', 'Иностранный язык', 'Физ.культура'])
+        subjects = Subject(['timp', 'eis', 'philosophy', 'english', 'sport'])
         score = Score([[5, 5, 5, 5, 5], [2, 5, 5, 5, 4], [3, 5, 2, 2, 5], [3, 5, 5, 2, 5], [3, 5, 2, 4, 5],
                    [2, 3, 2, 2, 3], [3, 5, 4, 4, 5], [5, 5, 4, 4, 5], [3, 5, 3, 3, 5], [5, 5, 5, 5, 5]],
                    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
@@ -71,8 +71,7 @@ class Score(object):
 
     def bad_student(self):
         temp = self.student_grade.items()
-        return [i[0] for i in temp if i[1].count(2) and float(sum(i[1]))/len(i[1])<3]
- #and float(sum(temp[1]))/len(temp[1])<3
+        return [i[0] for i in temp if i[1].count(2) and float(sum(i[1]))/len(i[1])<3.7]
     def excellent_student(self):
         temp = self.student_grade.items()
         return [i[0] for i in temp if i[1].count(5) == len(i[1])]    
