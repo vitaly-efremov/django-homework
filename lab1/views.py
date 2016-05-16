@@ -2,6 +2,32 @@
 from django.views.generic.base import TemplateView
 from random import random
 
+subjects = [
+    Subject('timp'),
+    Subject('eis'),
+    Subject('philosophy'),
+    Subject('english'),
+    Subject('sport')
+]
+
+students = [
+    Student(1 ,'Заммет Тобиас'),
+    Student(2 ,'Гилмор Дэвид'),
+    Student(3 ,'Мальмстин Ингви'),
+    Student(4 ,'Хэтфилд Джеймс'),
+    Student(5 ,'Турунен Тарья'),
+    Student(6 ,'Осборн Оззи'),
+    Student(7 ,'Плант Роберт'),
+    Student(8 ,'Джонсон Брайан'),
+    Student(9 ,'Фрипп Роберт'),
+    Student(10 ,'Роуз Эксл'),
+]
+
+scores = [Score(student, subject, int(random()*5)+1) for subject in subjects for student in students]
+
+statistics = Statistics(subjects, students, scores)
+
+
 class IndexView(TemplateView):
     template_name = "index.html"
 
@@ -63,28 +89,3 @@ class Score:
         return self.subject
     def get_score(self):
         return self.score
-
-subjects = [
-    Subject('timp'),
-    Subject('eis'),
-    Subject('philosophy'),
-    Subject('english'),
-    Subject('sport')
-]
-
-students = [
-    Student(1 ,'Заммет Тобиас'),
-    Student(2 ,'Гилмор Дэвид'),
-    Student(3 ,'Мальмстин Ингви'),
-    Student(4 ,'Хэтфилд Джеймс'),
-    Student(5 ,'Турунен Тарья'),
-    Student(6 ,'Осборн Оззи'),
-    Student(7 ,'Плант Роберт'),
-    Student(8 ,'Джонсон Брайан'),
-    Student(9 ,'Фрипп Роберт'),
-    Student(10 ,'Роуз Эксл'),
-]
-
-scores = [Score(student, subject, int(random()*5)+1) for subject in subjects for student in students]
-
-statistics = Statistics(subjects, students, scores)
