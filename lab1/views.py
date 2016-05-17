@@ -8,7 +8,7 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         statistict_stud = []
-        students = Student([1, 2, 3, 4, 5, 6, 7, 8], ['Аримпилов', 'Борисов', 'Селиванова', 'Демченко', 'Иванов', 'Фёдоров', 'Хорошев', 'Кельский'])
+        students = Student{1:'Аримпилов', 2:'Борисов', 3:'Селиванова', 4:'Демченко', 5:'Иванов', 6:'Фёдоров', 7:'Хорошев', 8:'Кельский'}
         subject = Subject(['s1', 's2', 's3', 's4', 's5'])
         score = Score([[3,4,5,4,5], [5,4,5,4,3], [5,5,5,4,4], [4,4,3,4,5], [2,3,4,4,4],
                    [4,4,3,5,5], [5,5,5,5,5], [5, 5, 5, 5, 5]],
