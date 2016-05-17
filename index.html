@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+        <div class="container">
+            <h1 style="text-align:center;">Лабораторная работа №1</h1>
+
+            <h2>Успеваемость студентов:</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>№</th>
+                  <th>Фамилия</th>
+                  <th>БД</th>
+                  <th>Фс</th>
+                  <th>БОС</th>
+                  <th>ДМ</th>
+                  <th>ИЯ</th>
+                  <th>Среднее значение</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for student in students_statistics %}
+                        <tr>
+                            <th scope="row">{{student.id}}</th>
+                            <td>{{student.surname}}</td>
+                            <td>{{student.s1}}</td>
+                            <td>{{student.s2}}</td>
+                            <td>{{student.s3}}</td>
+                            <td>{{student.s4}}</td>
+                            <td>{{student.s5}}</td>
+                            <td>{{student.average}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <h4>Отличники: {{excellent_students}}</h4>
+            <h4>Двоечники: {{bad_students}}</h4>
+        </div>
+	</body>
+</html>
