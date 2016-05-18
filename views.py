@@ -8,14 +8,12 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         statistict_stud = []
-        students = Student([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], ['Сидоров', 'Шишкин', 'Меньшиков', 'Сахаров', 'Филин', 'Арбузова', 'Белов', 'Вернадский', 'Демченко', 'Глазков'])
-        subject = Subject(['s1', 's2', 's3', 's4', 's5'])
-        score = Score([[3,4,5,4,5], [5,4,5,4,3], [5,5,5,4,4], [4,4,3,4,5], [2,3,4,4,4],
-                   [4,4,3,5,5], [5,5,5,5,5], [5, 5, 5, 5, 5],[3, 2, 2, 2, 5], [3, 5, 4, 3, 5]],
-                   [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        students = Student([1,2,3,4,5,6,7,8,9,10], ['Сидоров', 'Шишкин', 'Меньшиков', 'Сахаров', 'Филин', 'Арбузова', 'Белов', 'Вернадский', 'Демченко', 'Глазков'])
+        subject = Subject(['p_1', 'p_2', 'p_3', 'p_4', 'p_5', 'p_6'])
+        score = Score([[3,4,5,4,2,4], [5,4,5,4,3,4], [5,5,5,4,4,3], [4,4,3,4,5,5], [2,3,4,4,2,3], [4,4,3,5,5,3], [5,5,5,5,5,5], [5, 5, 5, 5, 5,5],[3, 2, 2, 2, 3, 4], [3, 5, 4, 3, 5,3]], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
         for i in range(1,11):
             statistics = Statistics(score.get_marks(i))
-            statistict_stud.append(statistics.formatter(i, students.get_surname(i), subject.get_subject()))
+            statistict_stud.append(statistics.metod(i, students.get_surname(i), subject.get_subject()))
         bad_stud = ', '.join(students.get_surname(i) for i in score.bad_student())
         excellent_stud = ', '.join(students.get_surname(i) for i in score.excellent_student())
         
@@ -55,8 +53,8 @@ class Statistics(object):
     def __init__(self, marks):
         self.marks = marks
     def _average_grade(self):
-        return float(sum(self.marks))/len(self.marks)
-    def formatter(self, id, surname, subject):
+        return round(float(sum(self.marks))/len(self.marks), 2)
+    def metod(self, id, surname, subject):
         data = {'id':id, 'surname':surname}
         data.update(dict(zip(subject, self.marks)))
         data.update({'average':self._average_grade()})

@@ -22,6 +22,7 @@
                   <th>БОС</th>
                   <th>ДМ</th>
                   <th>ИЯ</th>
+				  <th>ТВиМС</th>
                   <th>Среднее значение</th>
                 </tr>
                 </thead>
@@ -30,11 +31,12 @@
                         <tr>
                             <th scope="row">{{student.id}}</th>
                             <td>{{student.surname}}</td>
-                            <td>{{student.s1}}</td>
-                            <td>{{student.s2}}</td>
-                            <td>{{student.s3}}</td>
-                            <td>{{student.s4}}</td>
-                            <td>{{student.s5}}</td>
+                            <td>{{student.p_1}}</td>
+                            <td>{{student.p_2}}</td>
+                            <td>{{student.p_3}}</td>
+                            <td>{{student.p_4}}</td>
+                            <td>{{student.p_5}}</td>
+							<td>{{student.p_6}}</td>
                             <td>{{student.average}}</td>
                         </tr>
                     {% endfor %}
