@@ -13,7 +13,7 @@ class IndexView(TemplateView):
         score = Score([[5, 5, 5, 5, 5], [2, 3, 4, 5, 4], [3, 5, 2, 2, 5], [3, 5, 5, 2, 5], [3, 5, 2, 4, 5],
                    [2, 5, 2, 2, 5], [3, 5, 4, 4, 5], [3, 5, 2, 2, 2], [3, 5, 3, 3, 5], [3, 5, 4, 3, 5]],
                    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-        for i in range(1,11):
+        for i in range(1, 11):
             statistics = Statistics(score.get_grades(i))
             statistict_stud.append(statistics.format_record(i, students.get_fio(i), subject.get_subject()))
         bad_stud = ', '.join(students.get_fio(i) for i in score.bad_student())
@@ -39,13 +39,13 @@ class Statistics(object):
         self.grades = grades
 
     def _average_grade(self):
-        return float(sum(self.grades))/len(self.grades)
+        return sum(self.grades)/len(self.grades)
 
     def format_record(self, student_id, fio, subject):
-        inform = {'id':student_id, 'fio':fio}
+        inform = {'id': student_id, 'fio': fio}
         tmp = dict(zip(subject, self.grades))
         inform.update(tmp)
-        inform.update({'average':self._average_grade()})
+        inform.update({'average': self._average_grade()})
         return inform
 
 class Subject(object):
@@ -61,8 +61,6 @@ class Score(object):
     def get_grades(self, student_id):
         return self.student_assessment.setdefault(student_id)
     def bad_student(self):
-        tmp = self.student_assessment.items()
-        return [i for i in range(1,11) if Statistics(self.get_grades(i))._average_grade() < 3.5]
+        return [i for i in range(1, 11) if Statistics(self.get_grades(i))._average_grade() < 3.5]
     def excellent_student(self):
-        tmp = self.student_assessment.items()
-        return [i for i in range(1,11) if Statistics(self.get_grades(i))._average_grade() == 5]
+        return [i for i in range(1, 11) if Statistics(self.get_grades(i))._average_grade() == 5]
