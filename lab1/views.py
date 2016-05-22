@@ -6,39 +6,55 @@ class IndexView(TemplateView):
     template_name = "index.html"
 
     def get_context_data(self, **kwargs):
+        spisokFIO = ['Petr Petrov', 'Ivan Ivanov', 'Nikolay Sidorov', 'Aleksey Molotov', 'Viktor Dragunov', 'Konstantin Kovrov', 'Sergey Korolev', 'Yuriy Gagarin', 'Aleksandr Suvorov','Aleksandr Pushkin']
+        import random
+        spisokTIMP = []
+        spisokEIS = []
+        spisokPHIL = []
+        spisokENG = []
+        spisokSPORT = []
+
+        inf=[]
+        otl=[]
+        otch=[]
+
+        for i in range(len(spisokFIO)):
+            spisokTIMP.append(random.randint(2, 5))
+            spisokEIS.append(random.randint(2, 5))
+            spisokPHIL.append(random.randint(2, 5))
+            spisokENG.append(random.randint(2, 5))
+            spisokSPORT.append(random.randint(2, 5))
+            k=(spisokPHIL[i] + spisokTIMP[i] + spisokEIS[i] + spisokENG[i] + spisokSPORT[
+                    i]) / 5
+            spis = {
+                'id': i+1,
+                'fio': spisokFIO[i],
+                'timp': spisokTIMP[i],
+                'eis': spisokEIS[i],
+                'philosophy': spisokPHIL[i],
+                'english': spisokENG[i],
+                'sport': spisokSPORT[i],
+                'average': k
+            }
+            inf.append(spis)
+            if k==5:
+                otl.append(spisokFIO[i])
+
+            if k < 3:
+                otch.append(spisokFIO[i])
+
+
+
         context = super(IndexView, self).get_context_data(**kwargs)
         context.update(
             {
-                'students_statistics': [
-                    {
-                        'id': 1,
-                        'fio': 'Someone',
-                        'timp': 2,
-                        'eis': 3,
-                        'philosophy': 4,
-                        'english': 5,
-                        'sport': 2.3,
-                        'average': 2.3,
-                    }
-                ],
-                'excellent_students': 'Student A, Student B',
-                'bad_students': 'Student C, Student D'
+                'students_statistics': inf,
+
+                'excellent_students': otl,
+                'bad_students': otch
             }
         )
         return context
 
 
-class Student:
-    pass
 
-
-class Statistics:
-    # student_id, [Scores]
-    pass
-
-class Subject:
-    pass
-
-class Score:
-    # Subject, Student, value
-    pass
