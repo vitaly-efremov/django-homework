@@ -1,63 +1,145 @@
-﻿#-*- coding: utf-8 -*-
 from django.views.generic.base import TemplateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from .models import *
+from .forms import *
+import re
 
 
+MANAGE_TEMPLATE_NAME = 'manage.html'
+
+TABLES = [Teacher,
+	Subject,
+	Workload
+	]
+
+
+
+def get_table_name(model):
+    return model.__name__
+
+
+def get_edit_url(table_name, id):
+    return '/edit{}/{}'.format(table_name, id)
+
+
+def get_delete_url(table_name, id):
+    return '/del{}/{}'.format(table_name, id)
+
+
+def get_add_url(model):
+    return '/add{}'.format(get_table_name(model))
+
+
+def get_headers(model):
+    return list(
+        map(
+            lambda x: re.sub('.*\.', '', str(x)),
+            model._meta.fields
+        )
+    )
+
+
+def get_content(model):
+    res = list(
+        map(
+            lambda x: {
+                'items': [getattr(
+                    x,
+                    re.sub('.*\.', '', str(field))
+                ) for field in model._meta.fields],
+                'url_edit': get_edit_url(
+                    get_table_name(model),
+                    getattr(x, 'id')
+                ),
+                'url_delete': get_delete_url(
+                    get_table_name(model),
+                    getattr(x, 'id')
+                )
+            },
+            model.objects.all()
+        )
+    )
+    return res
+
+
+def get_table_info(table):
+    return {
+        'name': get_table_name(table),
+        'url_add': get_add_url(table),
+        'headers': get_headers(table),
+        'content': get_content(table)
+    }
+	
 class IndexView(TemplateView):
     template_name = "index.html"
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        statistict_stud = []
-        students = Student([1,2,3,4,5,6,7,8,9,10], ['Сидоров', 'Шишкин', 'Меньшиков', 'Сахаров', 'Филин', 'Арбузова', 'Белов', 'Вернадский', 'Демченко', 'Глазков'])
-        subject = Subject(['p_1', 'p_2', 'p_3', 'p_4', 'p_5', 'p_6'])
-        score = Score([[3,4,5,4,2,4], [5,4,5,4,3,4], [5,5,5,4,4,3], [4,4,3,4,5,5], [2,3,4,4,2,3], [4,4,3,5,5,3], [5,5,5,5,5,5], [5, 5, 5, 5, 5,5],[3, 2, 2, 2, 3, 4], [3, 5, 4, 3, 5,3]], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-        for i in range(1,11):
-            statistics = Statistics(score.get_marks(i))
-            statistict_stud.append(statistics.metod(i, students.get_surname(i), subject.get_subject()))
-        bad_stud = ', '.join(students.get_surname(i) for i in score.bad_student())
-        excellent_stud = ', '.join(students.get_surname(i) for i in score.excellent_student())
-        
         context.update(
             {
-                'students_statistics': statistict_stud,
-                'excellent_students': excellent_stud,
-                'bad_students': bad_stud
+                'tables': [get_table_info(table) for table in TABLES]
             }
         )
         return context
+		
+class addTeacher(CreateView):
+    form_class = TeacherForm
+    model = Teacher
+    template_name = MANAGE_TEMPLATE_NAME
+    success_url = "/"
 
 
-class Student(object):
-    def __init__(self, id, surname):
-        self.student = dict(zip(id, surname))
-    def get_surname(self, id):
-        return self.student.setdefault(id)
+class delTeacher(DeleteView):
+    form_class = TeacherForm
+    model = Teacher
+    template_name = MANAGE_TEMPLATE_NAME
+    success_url = "/"
 
-class Subject(object):
-    def __init__(self, subject):
-        self.subject = subject
-    def get_subject(self):
-        return self.subject
-    
-class Score(object):
-    def __init__(self, marks, id):
-        self.student_marks = dict(zip(id, marks))
-    def get_marks(self, id):
-        return self.student_marks.setdefault(id)
-    def bad_student(self):
-        return [i[0] for i in self.student_marks.items() if float(sum(i[1])/len(i[1]))<3]
-    def excellent_student(self):
-        return [i[0] for i in self.student_marks.items() if float(sum(i[1])/len(i[1])) == 5]  
 
-class Statistics(object):
-    def __init__(self, marks):
-        self.marks = marks
-    def _average_grade(self):
-        return round(float(sum(self.marks))/len(self.marks), 2)
-    def metod(self, id, surname, subject):
-        data = {'id':id, 'surname':surname}
-        data.update(dict(zip(subject, self.marks)))
-        data.update({'average':self._average_grade()})
-        return data
+class editTeacher(UpdateView):
+    form_class = TeacherForm
+    model = Teacher
+    template_name = MANAGE_TEMPLATE_NAME
+    success_url = "/"
 
-  
+
+class addSubject(CreateView):
+    form_class = SubjectForm
+    model = Subject
+    template_name = MANAGE_TEMPLATE_NAME
+    success_url = "/"
+
+
+class delSubject(DeleteView):
+    form_class = SubjectForm
+    model = Subject
+    template_name = MANAGE_TEMPLATE_NAME
+    success_url = "/"
+
+
+class editSubject(UpdateView):
+    form_class = SubjectForm
+    model = Subject
+    template_name = MANAGE_TEMPLATE_NAME
+    success_url = "/"
+
+
+class addWorkload(CreateView):
+    form_class = WorkloadForm
+    model = Workload
+    template_name = MANAGE_TEMPLATE_NAME
+    success_url = "/"
+
+
+class delWorkload(DeleteView):
+    form_class = WorkloadForm
+    model = Workload
+    template_name = MANAGE_TEMPLATE_NAME
+    success_url = "/"
+
+
+class editWorkload(UpdateView):
+    form_class = WorkloadForm
+    model = Workload
+    template_name = MANAGE_TEMPLATE_NAME
+    success_url = "/"

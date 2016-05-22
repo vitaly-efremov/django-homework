@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Школа</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 style="text-align:center;"><a href="/">Школа</a></h1>
+      {% for table in tables %}
+        <h2>{{table.name}}</h2>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            {% for header in table.headers %}
+              <th>{{header}}</th>
+            {% endfor %}
+            <th>edit</th>
+            <th>delete</th>
+          </tr>
+          </thead>
+          <tbody>
+            {% for record in table.content %}
+              <tr>
+                {% for value in record.items %}
+                  <td>{{value}}</td>
+                {% endfor %}
+                <td><a href="{{record.url_edit}}">edit</a></td>
+                <td><a href="{{record.url_delete}}">delete</a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <a href="{{table.url_add}}">Add</a>
+      {% endfor %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Школа</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-theme.min.css' %}">
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 style="text-align:center;"><a href="/">Школа</a></h1>
+      <h2>Edit</h2>
+      <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </body>
+</html>
