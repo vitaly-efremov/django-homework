@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+from django.views.generic.base import TemplateView
 class set_Human(object):
     def __init__(self, fio):
         self.fio = fio
