@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 from django.views.generic.base import TemplateView
 import random
 
@@ -69,7 +69,7 @@ class Statistics:
     def get_excellent_students(stat, students_id):
         private_list_excellent_students = []
         for i in range(len(stat)):
-            if stat[i] >= 4.0:
+            if stat[i] = 5.0:
                 private_list_excellent_students.append(students_id[i])
         return private_list_excellent_students
 
