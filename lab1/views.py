@@ -9,15 +9,26 @@ class IndexView(TemplateView):
         context = super(IndexView, self).get_context_data(**kwargs)
         context.update(
             {
-                'students_statistics': [
+                'students_statistics': 
+                [
                     {
                         'id': 1,
-                        'fio': 'Someone',
+                        'fio': 'Julia',
                         'timp': 2,
                         'eis': 3,
                         'philosophy': 4,
                         'english': 5,
                         'sport': 2.3,
+                        'average': 2.3,
+                    },
+                    {
+                        'id': 2,
+                        'fio': 'Bob',
+                        'timp': 4,
+                        'eis': 4,
+                        'philosophy': 4,
+                        'english': 5,
+                        'sport': 3,
                         'average': 2.3,
                     }
                 ],
@@ -29,7 +40,17 @@ class IndexView(TemplateView):
 
 
 class Student:
-    pass
+    def __init__(self,name):
+        self.id=id(self)
+        self.name=name
+        state=dict()
+    def stud_rand():
+        """
+        в качестве параметров словарь фамилий
+        в рандоме надо инициализировать список объектов 
+        типа студент с присвоением фамилий
+        """
+        pass
 
 
 class Statistics:
