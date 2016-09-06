@@ -10,7 +10,6 @@
 	<body>
         <div class="container">
             <h1 style="text-align:center;">Лабораторная работа №1</h1>
-
             <h2 style="text-align:center;">Успеваемость студентов гр. 734</h2>
             <table class="table table-striped">
                 <thead>
@@ -20,27 +19,27 @@
                   <th>ТиМП</th>
                   <th>ЭиС</th>
                   <th>Философия</th>
-                  <th>Иностранный язык</th>
-                  <th>Физическая культура</th>
-                  <th>Средний балл</th>
+                  <th>Иностран.язык</th>
+                  <th>Физ-культура</th>
+                  <th>Средн.балл</th>
                 </tr>
                 </thead>
                 <tbody>
                     {% for student in students_statistics %}
                         <tr>
                             <th scope="row">{{student.id}}</th>
-                            <td>{{student.fio}}</td>
-                            <td>{{student.timp}}</td>
-                            <td>{{student.eis}}</td>
-                            <td>{{student.philosophy}}</td>
-                            <td>{{student.english}}</td>
-                            <td>{{student.sport}}</td>
-                            <td>{{student.average}}</td>
+                            <td style="text-align:center;">{{student.fio}}</td>
+                            <td style="text-align:center;">{{student.state.timp}}</td>
+                            <td style="text-align:center;">{{student.state.eis}}</td>
+                            <td style="text-align:center;">{{student.state.philosophy}}</td>
+                            <td style="text-align:center;">{{student.state.english}}</td>
+                            <td style="text-align:center;">{{student.state.sport}}</td>
+                            <td style="text-align:center;">{{student.state.average}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <h4>Отличники:{{excellent_students}}</h4>
+            <h4>Отличники:{{exc_students}}</h4>
             <h4>Отчислить:{{bad_students}}</h4>
         </div>
 	</body>

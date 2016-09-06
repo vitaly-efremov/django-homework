@@ -11,44 +11,19 @@ class IndexView(TemplateView):
         context = super(IndexView, self).get_context_data(**kwargs)
         context.update(
             {
-                'students_statistics': 
-                [
-                    {
-                        'id': 1,
-                        'fio': 'Julia',
-                        'timp': 2,
-                        'eis': 3,
-                        'philosophy': 4,
-                        'english': 5,
-                        'sport': 2.3,
-                        'average': 2.3,
-                    },
-                    {
-                        'id': 2,
-                        'fio': 'Bob',
-                        'timp': 4,
-                        'eis': 4,
-                        'philosophy': 4,
-                        'english': 5,
-                        'sport': 3,
-                        'average': 2.3,
-                    }
-                ],
-                'excellent_students': 'Student A, Student B',
-                'bad_students': 'Student C, Student D'
+                'students_statistics': all_students,
+                'exc_students': exc_students,
+                'bad_students': bad_students
             }
         )
         return context
 
 
 class Student:
-    def __init__(self,name):
-        self.id=id(self)
-        self.name=name
-        state=dict()
-    def set_rand_mark(self):
-        pass
-
+    def __init__(self,fio):
+        self.id=id(self)-id(self)//10000*10000
+        self.fio=fio
+        self.state=dict()
 
 
 class Statistics:
@@ -70,13 +45,30 @@ class Score:
     pass
 
 
-"""
-#возьмём список
-a=['red','green','blue','violent','orange','purple','yellow','black']
-#отсортируем его
-a.sort()
-#импортируем метод рандомной последовательности из random
-from random import sample
-b=sample(a,len(a))
-#теперь можно посмотреть результат рандома
-"""
+names=['Alisa','Andrew','Ann','Bob','Britney','Bruce','Jonny','Lucida','Melisa','Pitt']
+#пересортировали names в случайном порядке
+names=sample(names,len(names))
+all_students=[]
+exc_students=[]
+bad_students=[]
+for i in range(len(names)):
+    all_students.append(Student(names[i]))
+    all_students[i].state['timp']=randint(1,5)
+    all_students[i].state['eis']=randint(1,5)
+    all_students[i].state['philosophy']=randint(1,5)
+    all_students[i].state['english']=randint(1,5)
+    all_students[i].state['sport']=randint(1,5)
+    summ=0
+    for e in all_students[i].state.values():
+        summ+=e
+    #вопрос: почему следующее присваивание корректно работает,
+    #но если float будет на всё выражение, то будет округление к целому,
+    #которое присваивает вещественная 'average'
+    all_students[i].state['average']=float(summ)/len(all_students[i].state)
+for i in all_students:
+    if i.state['average']>=4.0:
+        exc_students.append(i.fio)
+    elif i.state['average']<3.0:
+        bad_students.append(i.fio)
+exc_students=', '.join(exc_students)
+bad_students=', '.join(bad_students)
