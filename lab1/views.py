@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+#импортируем методы рандомных последовательности и целого числа из random
+from random import sample,randint
 from django.views.generic.base import TemplateView
 
 
@@ -44,6 +46,13 @@ class Student:
         self.id=id(self)
         self.name=name
         state=dict()
+    def set_rand_mark(self):
+        pass
+
+
+
+class Statistics:
+    # student_id, [Subjects]
     def stud_rand():
         """
         в качестве параметров словарь фамилий
@@ -51,10 +60,6 @@ class Student:
         типа студент с присвоением фамилий
         """
         pass
-
-
-class Statistics:
-    # student_id, [Subjects]
     pass
 
 class Subject:
@@ -63,3 +68,15 @@ class Subject:
 class Score:
     # Subject,
     pass
+
+
+"""
+#возьмём список
+a=['red','green','blue','violent','orange','purple','yellow','black']
+#отсортируем его
+a.sort()
+#импортируем метод рандомной последовательности из random
+from random import sample
+b=sample(a,len(a))
+#теперь можно посмотреть результат рандома
+"""
