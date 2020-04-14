@@ -51,8 +51,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'homework.urls'
 
-print(111, BASE_DIR)
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
